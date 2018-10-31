@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.exercise.Exercises"
+            android:label="@string/title_activity_exercises" />
+        <activity
+            android:name=".activity.resource.Resources"
+            android:label="@string/title_activity_resources"></activity>
     </application>
 
 </manifest>
