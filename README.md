@@ -35,6 +35,10 @@ int function(){
 
 
 
+# Resources
+
+
+ * https://developer.android.com/guide/topics/ui/
 
 
 
