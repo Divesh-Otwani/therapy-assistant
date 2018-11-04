@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "862622036219",
+    "firebase_url": "https://therapy-assistant.firebaseio.com/",
+    "project_id": "therapy-assistant",
+    "storage_bucket": "therapy-assistant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862622036219:android:ada21eb1a6fc27a1",
+        "android_client_info": {
+          "package_name": "haverford.therapy_assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862622036219-pdmqh1vtohqdo3p43c1bnb4kkok3re53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD4-qBeGfILIw8TWxz1JJf5PWTZf-VsT8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862622036219:android:b6df0a7812159a9f",
+        "android_client_info": {
+          "package_name": "haverford.therapy_assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862622036219-pdmqh1vtohqdo3p43c1bnb4kkok3re53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD4-qBeGfILIw8TWxz1JJf5PWTZf-VsT8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
