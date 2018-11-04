@@ -2,4 +2,5 @@
     <string name="app_name">therapy-assistant</string>
     <string name="title_activity_exercises">Exercises</string>
     <string name="title_activity_resources">Resources</string>
+    <string name="title_activity_doexercise">Exercise Log</string>
 </resources>
