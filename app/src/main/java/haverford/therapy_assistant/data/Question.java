@@ -2,7 +2,6 @@ package haverford.therapy_assistant.data;
 
 import java.util.Optional;
 
-import haverford.therapy_assistant.data.answer.Answer;
 
 public class Question {
     private int mUID;

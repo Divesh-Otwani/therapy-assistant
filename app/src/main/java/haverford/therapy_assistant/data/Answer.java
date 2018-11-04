@@ -1,6 +1,4 @@
-package haverford.therapy_assistant.data.answer;
-
-import haverford.therapy_assistant.data.QuestionType;
+package haverford.therapy_assistant.data;
 
 public abstract class Answer {
     public abstract QuestionType getQuestionType();
