@@ -9,6 +9,15 @@ public class Question {
     private String mPrompt;
     private String mName;
 
+
+    public Question(int id, QuestionType qType, Answer answer, String prompt, String name) {
+        mUID = id;
+        mQType = qType;
+        //mAnswer = null;
+        mPrompt = prompt;
+        mName = name;
+    }
+
     /**
      *
      * @param ans

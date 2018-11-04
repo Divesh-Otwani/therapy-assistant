@@ -2,6 +2,8 @@ package haverford.therapy_assistant;
 
 import org.junit.Test;
 
+import java.sql.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,5 +15,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void test_Dates() {
+        Date d = Date.valueOf("should break");
     }
 }

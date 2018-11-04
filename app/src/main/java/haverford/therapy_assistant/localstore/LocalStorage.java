@@ -5,10 +5,17 @@ package haverford.therapy_assistant.localstore;
 import android.content.Context;
 import android.util.JsonWriter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -130,10 +137,109 @@ public class LocalStorage {
         return writer!=null;
     }
 
+    /**
+     * Interprets json array as vector of questions.
+     * @param questions
+     * @return The vector.
+     */
+    private Vector<Question> interpretQuestions(JSONArray questions) throws JSONException {
+        Vector<Question> out = new Vector<Question>();
 
-    // Implement this too
+        for(int i = 0; i<questions.length(); i++) {
+            JSONObject question = questions.getJSONObject(i);
+
+        }
+
+        return out;
+    }
+
+    /**
+     * Transforms JSON string into exercise.
+     * @param json
+     * @return The interpreted exercise.
+     */
+    private Exercise interpretJSONEx(String json) {
+
+        try {
+            JSONObject exercise = new JSONObject(json);
+            Exercise out = new Exercise(exercise.getInt("uID"),
+                                        exercise.getString("name"),
+                                        interpretQuestions(exercise.getJSONArray("questions")));
+            return out;
+
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Generates exercise from json file.
+     * @param file
+     * @return Returns Vector of exercises
+     */
+    private Exercise generateExercise(File file) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+
+        String json = null;
+        String next = null;
+
+        while((next = reader.readLine())!=null) {
+            if(json==null) json = next+"\n";
+            else json+=next+"\n";
+        }
+
+        reader.close();
+
+        Exercise out = interpretJSONEx(json);
+
+        return out;
+    }
+
+    /**
+     * Generates Vector of exercises from json files.
+     * @param files
+     * @return Returns Vector of exercises
+     */
+    private Vector<Exercise> generateExercises(File[] files) throws IOException {
+        Vector<Exercise> out = new Vector<Exercise>();
+
+        for(File file : files)
+        {
+            Exercise in = generateExercise(file);
+            if(in!=null) out.add(in);
+        }
+
+        return out;
+    }
+
+    /**
+     * Returns all saved exercises. Sorts by date.
+     * @return
+     */
     public HashMap<Date,Vector<Exercise>> queryExercises(){
-        return null;
+        HashMap<Date, Vector<Exercise>> out = new HashMap<Date, Vector<Exercise>>();
+
+        String[] dirList = context.fileList();
+
+        for(String dir : dirList) {
+            try {
+                Date date = Date.valueOf(dir);
+                File dateDir = context.getDir(dir, Context.MODE_PRIVATE);
+                if(dateDir.isDirectory()) {
+                    File[] exercises = dateDir.listFiles();
+                    Vector<Exercise> exer = generateExercises(exercises);
+                    if(!exer.isEmpty())out.put(date,exer);
+                }
+            } catch(IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return out;
     }
 
 }

@@ -9,8 +9,13 @@ public class Exercise {
     private Vector<Question> mQuestions;
     private boolean mComplete = false;
 
-    public boolean isComplete(){return mComplete;}
+    public Exercise(int id, String name, Vector<Question> questions) {
+        mUID = id;
+        mName = name;
+        mQuestions = questions;
+    }
 
+    public boolean isComplete(){return mComplete;}
     public int getUID(){return mUID;}
     public String getName(){return mName;}
     public Vector<Question> getQuestions() {
