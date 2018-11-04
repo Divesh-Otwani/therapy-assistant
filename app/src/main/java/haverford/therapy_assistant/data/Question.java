@@ -2,6 +2,8 @@ package haverford.therapy_assistant.data;
 
 import java.util.Optional;
 
+import haverford.therapy_assistant.data.answer.Answer;
+
 
 public class Question {
     private int mUID;
@@ -9,17 +11,13 @@ public class Question {
     private Optional<Answer> mAnswer;
     private String mPrompt;
     private String mName;
-    public Question(int uid, int qtype, String prompt, String name){
+
+    public Question(int uid, QuestionType qtype, String prompt, String name){
         mUID = uid;
-        try{
-        if(0 <= qtype && qtype <= 2){
-            mQType = QuestionType.values()[qtype];
-        }}catch (Exception e){
-            throw e;
-        }
-	mPrompt = prompt;
-	mName = name;
-}
+        mQType = qtype;
+	    mPrompt = prompt;
+	    mName = name;
+    }
 
 
     /**

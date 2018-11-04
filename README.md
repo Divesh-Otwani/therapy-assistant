@@ -26,12 +26,15 @@ int function(){
 # Things to do in next week
 
 
- * Divesh: write up basic classes, and minimial version of other classes,
-   email/contact yasmine and brian with a function we agree upon for pulling
-   data from online or local storage. **Send email Wed by 2pm**
- * Brian: implement a basic form of the pulling-data function agreed with divesh
- * Zach: Develop the activities that display the resources nicely.
- * Yasmine: implement a basic form the pulling-data function agreed with divesh
+ * Divesh: 
+  * Explain how manu bars can be made and used. (Tonight).
+  * Have 5 basic activities for exercises + home ready -- even if they
+   just display text (but in the right spots with good extensible changeable
+   layouts)
+ * Brian: Pair program with Zach on (1) the several resources classes and (2)
+   making 3 resource activities; really basic (display
+   text but in the right places)
+ * Yasmine: Implement pulling of resources.
 
 
 
