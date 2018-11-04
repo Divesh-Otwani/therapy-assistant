@@ -6,8 +6,9 @@ public class Question {
     private int mUID;
     private QuestionType mQType;
     private Optional<Answer> mAnswer;
-    private String question;
-    public Question(int uid, int qtype){
+    private String mPrompt;
+    private String mName;
+    public Question(int uid, int qtype, String prompt, String name){
         mUID = uid;
         try{
         if(0 <= qtype && qtype <= 2){
@@ -15,17 +16,34 @@ public class Question {
         }}catch (Exception e){
             throw e;
         }
+	mPrompt = prompt;
+	mName = name;
+}
 
-    }
 
     /**
      *
      * @param ans
      * @return True if answer is the right type.
      */
-    boolean answerQuestion(Answer ans){
+    public boolean answerQuestion(Answer ans){
         return false;
     }
 
-    boolean isAnswered(){return mAnswer.isPresent();}
+    public boolean isAnswered(){return mAnswer.isPresent();}
+
+
+    /**
+     * Returns real value of answer. Only call after checking isAnswered.
+     * @return
+     */
+    public Object getAnswer(){
+        if(isAnswered()) return mAnswer.get().getValue();
+        else return null;
+    }
+
+    public int getUID(){return mUID;}
+    public QuestionType getQType(){return mQType;}
+    public String getPrompt(){return mPrompt;}
+    public String getName(){return mName;}
 }

@@ -6,4 +6,9 @@ public class TextAnswer extends Answer {
     public QuestionType getQuestionType() {
         return null;
     }
+
+    @Override
+    public Object getValue() {
+        return null;
+    }
 }

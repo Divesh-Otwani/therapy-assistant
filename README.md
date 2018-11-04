@@ -35,6 +35,11 @@ int function(){
 
 
 
+# Resources
+
+
+ * https://developer.android.com/guide/topics/ui/
+ * https://developer.android.com/reference/android/util/JsonWriter
 
 
 
