@@ -39,7 +39,7 @@ public class Question {
      * @return
      */
     public JSONObject getAnswer(){
-        if(isAnswered()) return mAnswer.get().getValue();
+        if(isAnswered()) return mAnswer.get().toJSON();
         else return null;
     }
 

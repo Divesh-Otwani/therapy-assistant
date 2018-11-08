@@ -71,7 +71,7 @@ public class LocalStorage {
      * @param writer
      * @param e
      */
-    private void writeExercise(JsonWriter writer, Exercise e) throws IOException
+    private void writeExercise(JsonWriter writer, Exercise e) throws IOException, JSONException
     {
         writer.beginObject();
         writer.name("uID").value(e.getUID());
@@ -89,7 +89,7 @@ public class LocalStorage {
      * @param writer
      * @param questions
      */
-    private void writeQuestionList(JsonWriter writer, Vector<Question> questions) throws IOException{
+    private void writeQuestionList(JsonWriter writer, Vector<Question> questions) throws IOException,JSONException{
         writer.beginArray();
         for(Question q : questions)
             writeQuestion(writer,q);
@@ -125,7 +125,7 @@ public class LocalStorage {
      * @param writer
      * @param question
      */
-    private void writeQuestion(JsonWriter writer, Question question) throws IOException{
+    private void writeQuestion(JsonWriter writer, Question question) throws IOException,JSONException{
         writer.beginObject();
 
         writer.name("uID").value(question.getUID());
@@ -147,7 +147,7 @@ public class LocalStorage {
      * @param writer
      * @param answer
      */
-    private void writeAnswer(JsonWriter writer, JSONObject answer) throws IOException {
+    private void writeAnswer(JsonWriter writer, JSONObject answer) throws IOException, JSONException{
         writer.beginObject();
 
         Iterator<String> iterator = answer.keys();
@@ -161,7 +161,7 @@ public class LocalStorage {
             JSONObject valJO = answer.optJSONObject(next);
 
             if(valJO!=null) {writer.name(next);writeAnswer(writer,valJO);}
-            else if (valJA!=null) {writer.name(next); }
+            else if (valJA!=null) {writer.name(next);writeJSONArray(writer,valJA); }
             else if (valS!=null) {writer.name(next).value(valS); }
             else if (valD!=-11) {writer.name(next).value(valD); }
             else if (answer.isNull(next)){writer.name(next).nullValue();}
@@ -187,7 +187,7 @@ public class LocalStorage {
         try {
             writeExercise(writer,e);
             writer.close();
-        }catch(IOException ex) {
+        }catch(Exception ex) {
             ex.printStackTrace();
         }
 
