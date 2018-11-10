@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Button;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.Util;
@@ -25,9 +26,12 @@ public class Resources extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resources);
 
-        Toolbar bar = this.findViewById(R.id.home_toolbar);
+        Toolbar bar = this.findViewById(R.id.resource_toolbar);
         Util.makeToolbar(this, TITLE, bar);
         this.setSupportActionBar(bar);
+
+        Button actButton = this.findViewById(R.id.grid_button_act);
+        Button cbtButton = this.findViewById(R.id.grid_button_cbt);
 
     }
 

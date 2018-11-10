@@ -17,21 +17,31 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/resource_top"
+
+    <GridLayout
+        android:id="@+id/resource_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:columnCount="2"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/grid_button_cbt"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:text="CBT" />
+
+        <Button
+            android:id="@+id/grid_button_act"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:text="ACT" />
 
 
-    </android.support.v4.view.ViewPager>
+    </GridLayout>
 
-    <LinearLayout
-        android:id="@+id/resource_bot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-
-    </LinearLayout>
 </LinearLayout>

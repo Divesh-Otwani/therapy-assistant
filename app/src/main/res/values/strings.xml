@@ -4,4 +4,5 @@
     <string name="title_activity_resources">Resources</string>
     <string name="title_activity_doexercise">Exercise Log</string>
     <string name="title_activity_homepage">Homepage</string>
+    <string name="def">NONE</string>
 </resources>
