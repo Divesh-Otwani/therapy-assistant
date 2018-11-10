@@ -22,6 +22,9 @@
         <activity
             android:name=".activity.resource.Resources"
             android:label="@string/title_activity_resources"></activity>
+        <activity
+            android:name=".activity.resource.CBTResources"
+            android:label="@string/title_activity_cbt_resources"></activity>
     </application>
 
 </manifest>
