@@ -33,7 +33,7 @@ public class Resources extends AppCompatActivity {
         Button cbtButton = this.findViewById(R.id.grid_button_cbt);
         Toolbar bar = this.findViewById(R.id.resource_toolbar);
         Util.makeToolbar(this, TITLE, bar);
-        Util.buttonActivityStarter(this,cbtButton,CBTResourceAdapter.class);
+        Util.buttonActivityStarter(this,cbtButton,CBTResources.class);
         this.setSupportActionBar(bar);
 
 
