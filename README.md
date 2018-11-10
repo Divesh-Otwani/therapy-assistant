@@ -26,19 +26,32 @@ int function(){
 # Things to do in next week
 
 
- * Divesh: 
-  * Explain how manu bars can be made and used. (Tonight).
-  * Have 5 basic activities for exercises + home ready -- even if they
+ * Divesh: Have 5 basic activities for exercises + home ready -- even if they
    just display text (but in the right spots with good extensible changeable
    layouts)
  * Brian: Pair program with Zach on (1) the several resources classes and (2)
-   making 3 resource activities; really basic (display
-   text but in the right places)
+   making 3 resource activities; really basic (display text but in the right
+   places)
  * Yasmine: Implement pulling of resources.
 
 
+# Things To Discuss
 
-# Resources
+ * Adding articles and stuff via an app for the therapist (or maybe just an
+   online interface?)
+
+
+# Later Features to Add
+
+
+ * Make things pretty
+   * Add images
+   * Add a nice theme
+   * Add animations
+
+
+
+# Developer Resources and Key SO Links
 
 
  * https://developer.android.com/guide/topics/ui/
