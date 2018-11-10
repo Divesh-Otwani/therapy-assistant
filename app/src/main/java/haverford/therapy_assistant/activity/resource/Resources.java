@@ -26,14 +26,18 @@ public class Resources extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resources);
 
-        Toolbar bar = this.findViewById(R.id.resource_toolbar);
-        Util.makeToolbar(this, TITLE, bar);
-        this.setSupportActionBar(bar);
+
+
 
         Button actButton = this.findViewById(R.id.grid_button_act);
         Button cbtButton = this.findViewById(R.id.grid_button_cbt);
-
+        Toolbar bar = this.findViewById(R.id.resource_toolbar);
+        Util.makeToolbar(this, TITLE, bar);
         Util.buttonActivityStarter(this,cbtButton,CBTResourceAdapter.class);
+        this.setSupportActionBar(bar);
+
+
+
 
     }
 
