@@ -33,6 +33,8 @@ public class Resources extends AppCompatActivity {
         Button actButton = this.findViewById(R.id.grid_button_act);
         Button cbtButton = this.findViewById(R.id.grid_button_cbt);
 
+        Util.buttonActivityStarter(this,cbtButton,CBTResourceAdapter.class);
+
     }
 
 
