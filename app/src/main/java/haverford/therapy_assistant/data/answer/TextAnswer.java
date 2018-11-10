@@ -13,7 +13,17 @@ public class TextAnswer extends Answer {
     }
 
     @Override
+    public JSONObject toJSON() {
+        return null;
+    }
+
+    @Override
+    public Answer fromJSON(JSONObject obj) {
+        return null;
+    }
+
     public JSONObject getValue() {
         return null;
     }
+
 }
