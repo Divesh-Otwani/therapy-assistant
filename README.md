@@ -39,6 +39,10 @@ int function(){
 
  * Adding articles and stuff via an app for the therapist (or maybe just an
    online interface?)
+ * Divesh wants the functions to be smaller than 40 lines
+ * Divesh thinks we should each write a design document explaining the purpose
+   of our part of the code and the high level implementation; then combine these
+   into a large design document.
 
 
 # Later Features to Add
