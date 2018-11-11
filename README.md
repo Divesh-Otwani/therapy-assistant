@@ -23,16 +23,24 @@ int function(){
 
 ```
 
-# Things to do in next week
+# General Direction Now
+
+ * Converting the data we pull or read to nice views via adapters
+    * Basically populating a bunch of listviews or gridviews
 
 
- * Divesh: Have 5 basic activities for exercises + home ready -- even if they
-   just display text (but in the right spots with good extensible changeable
-   layouts)
- * Brian: Pair program with Zach on (1) the several resources classes and (2)
-   making 3 resource activities; really basic (display text but in the right
-   places)
- * Yasmine: Implement pulling of resources.
+# This week
+
+ * Fix a tiny UI thing to look nice (if you have time)
+
+
+
+# Things to do in next, next week
+
+ * Change names for Resource classes and layout/resources to be general and not
+   cbt specific
+ * Make an activity to display each type of resource (Or call another app on
+   click): e.g. article resource v.s. video resource
 
 
 # Things To Discuss
@@ -76,6 +84,8 @@ int function(){
    * Add a nice theme
    * Add animations
    * Make the overflow menu's logo something different and nice
+ * Make the Exercise home page more complex to be one continuous scroll but
+   connect headers when you run out
 
 
 # Practical Testing
