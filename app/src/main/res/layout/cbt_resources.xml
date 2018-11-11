@@ -14,8 +14,7 @@
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+    />
 
     <ListView
         android:id="@+id/cbt_list"

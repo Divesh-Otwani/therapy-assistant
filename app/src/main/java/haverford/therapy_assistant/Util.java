@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
@@ -36,10 +37,11 @@ public class Util {
                                    String title, int toolbarID){
         // TODO: Change layout to be nicer
         Toolbar bar = act.findViewById(toolbarID);
+        Class rootLayout = act.getWindow().getDecorView().getRootView().getClass();
         LinearLayout.LayoutParams toolbarLayout =
                 new LinearLayout.LayoutParams(
-                        Toolbar.LayoutParams.MATCH_PARENT,
-                        Toolbar.LayoutParams.WRAP_CONTENT);
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
         bar.setLayoutParams(toolbarLayout);
         bar.setPopupTheme(R.style.AppTheme);
         bar.setVisibility(View.VISIBLE);

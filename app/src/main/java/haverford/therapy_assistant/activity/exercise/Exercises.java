@@ -17,7 +17,7 @@ public class Exercises extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
-        Util.makeToolbar(this, TITLE, R.id.home_toolbar);
+        Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
         CloudData cd = new CloudData();
         cd.getii();
     }
