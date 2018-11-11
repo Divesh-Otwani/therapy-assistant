@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.Util;
@@ -16,6 +17,10 @@ public class SelectExercise extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectexercise);
         Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
+
+        // TODO: remove this code when time
+        TextView v = this.findViewById(R.id.testTextView);
+        v.setOnClickListener(Util.makeActStartListener(this, DoExercise.class));
 
     }
 

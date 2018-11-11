@@ -13,4 +13,11 @@
         android:layout_height="30dp"
         />
 
+    <TextView
+        android:id="@+id/testTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Some Exercise Item"
+        android:textSize="20sp" />
+
 </LinearLayout>

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import haverford.therapy_assistant.activity.exercise.Exercises;
 import haverford.therapy_assistant.activity.resource.Resources;
 import haverford.therapy_assistant.activity.exercise.SelectExercise;
-import haverford.therapy_assistant.data.Resource;
 
 /**
  * A collection of top level android utilities to avoid repeating code.
@@ -29,6 +27,8 @@ public class Util {
     *
     *   Utilities to make a toolbar with a menu.
     *   These should be used as they are in the Homepage activity.
+    *
+    *  PRECONDITION: The top level layout of the activity must be a LinearLayout.
     *
     * */
 
@@ -90,19 +90,22 @@ public class Util {
     }
 
     // Precondition: activity needs to be an activity class!
-    public static void buttonActivityStarter(final Context c,
+    public static void buttonActivityStarter(final AppCompatActivity act,
                                              Button b,
                                              final Class activity){
-        b.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        c.startActivity(new Intent(c, activity));
-                    }
-                });
+        b.setOnClickListener(Util.makeActStartListener(act, activity));
 
     }
 
+    public static View.OnClickListener makeActStartListener(final AppCompatActivity act,
+                                                            final Class activityToStart){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                    Util.startActivity(act, activityToStart);
+            }
+        };
+    }
 
 
 }

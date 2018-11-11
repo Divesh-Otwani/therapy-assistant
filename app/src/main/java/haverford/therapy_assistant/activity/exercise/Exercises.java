@@ -2,9 +2,11 @@ package haverford.therapy_assistant.activity.exercise;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.Util;
@@ -18,6 +20,12 @@ public class Exercises extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
         Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
+
+
+
+        FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
+        doExercise.setSize(FloatingActionButton.SIZE_AUTO);
+        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
         CloudData cd = new CloudData();
         cd.getii();
     }

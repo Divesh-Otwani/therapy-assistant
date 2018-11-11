@@ -6,4 +6,7 @@
     <string name="title_activity_homepage">Homepage</string>
     <string name="def">NONE</string>
     <string name="title_activity_cbt_resources">CBT Resources</string>
+    <string name="title_activity_do_exercise">DoExercise</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

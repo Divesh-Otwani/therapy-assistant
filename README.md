@@ -45,22 +45,13 @@ int function(){
    into a large design document.
 
 
-# Later Features to Add
-
-
- * Make things pretty
-   * Add images
-   * Add a nice theme
-   * Add animations
-
-
 
 # Developer Resources and Key SO Links
 
 
  * https://developer.android.com/guide/topics/ui/
  * https://developer.android.com/reference/android/util/JsonWriter
-
+ * Excellent for design: https://material.io/
 
 # TODO
 
@@ -69,6 +60,7 @@ int function(){
 
  * Remove repeated code with SelectExercise Activity -- need a base activity
    eventually!!
+ * Add a return home item in the menu
 
 ## Eventually
 
@@ -79,6 +71,16 @@ int function(){
    * Add, for each resource (in listviews) buttons to star them
    * Add a FAQ page explaining these things
  * Make all the layouts relative to the screen size (not orientation, for now...)
+ * Make things pretty
+   * Add images
+   * Add a nice theme
+   * Add animations
+   * Make the overflow menu's logo something different and nice
+
+
+# Practical Testing
+
+ * We should test this on two different phones for prolonged use
 
 
 
