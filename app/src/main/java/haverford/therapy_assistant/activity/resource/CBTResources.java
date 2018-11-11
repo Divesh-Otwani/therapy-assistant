@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,9 +28,8 @@ public class CBTResources extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cbt_resources);
 
-        Toolbar bar = this.findViewById(R.id.cbt_toolbar);
-        Util.makeToolbar(this, TITLE, bar);
-        this.setSupportActionBar(bar);
+        Util.makeToolbar(this, TITLE, R.id.cbt_toolbar);
+
 
         String[] testResources = {"Articles","https://www.nytimes.com/2018/06/13/well/cognitive-behavior-therapy-suicide.html","Videos","youtube.com"};
 
@@ -42,8 +42,12 @@ public class CBTResources extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.getMenuInflater().inflate(R.menu.resource_menu, menu);
-        return true;
+        return Util.createOptionsMenu(this, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        return Util.optionItemSelected(this, item);
     }
 }
 

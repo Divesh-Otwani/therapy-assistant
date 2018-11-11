@@ -20,6 +20,9 @@
             android:name=".activity.exercise.Exercises"
             android:label="@string/title_activity_exercises" />
         <activity
+            android:name=".activity.exercise.SelectExercise"
+            android:label="Select Exercise" />
+        <activity
             android:name=".activity.resource.Resources"
             android:label="@string/title_activity_resources"></activity>
         <activity

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import haverford.therapy_assistant.R;
@@ -27,17 +28,11 @@ public class Resources extends AppCompatActivity {
         setContentView(R.layout.activity_resources);
 
 
-
-
         Button actButton = this.findViewById(R.id.grid_button_act);
         Button cbtButton = this.findViewById(R.id.grid_button_cbt);
-        Toolbar bar = this.findViewById(R.id.resource_toolbar);
-        Util.makeToolbar(this, TITLE, bar);
+
+        Util.makeToolbar(this, TITLE, R.id.resource_toolbar);
         Util.buttonActivityStarter(this,cbtButton,CBTResources.class);
-        this.setSupportActionBar(bar);
-
-
-
 
     }
 
@@ -45,7 +40,11 @@ public class Resources extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.getMenuInflater().inflate(R.menu.resource_menu, menu);
-        return true;
+        return Util.createOptionsMenu(this, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        return Util.optionItemSelected(this, item);
     }
 }

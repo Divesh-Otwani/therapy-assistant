@@ -62,5 +62,24 @@ int function(){
  * https://developer.android.com/reference/android/util/JsonWriter
 
 
+# TODO
+
+
+## Urgent
+
+ * Remove repeated code with SelectExercise Activity -- need a base activity
+   eventually!!
+
+## Eventually
+
+
+ * On the homepage, set a few resources and exercise as favorites
+   * Maybe add buttons to star exercises and you can unstar them by long
+     pressing
+   * Add, for each resource (in listviews) buttons to star them
+   * Add a FAQ page explaining these things
+ * Make all the layouts relative to the screen size (not orientation, for now...)
+
+
 
 

@@ -1,25 +1,22 @@
 package haverford.therapy_assistant.activity.exercise;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.cloud.CloudData;
 
-public class Exercises extends AppCompatActivity {
-    public static final String TITLE = "Exercises";
+public class SelectExercise extends AppCompatActivity{
+    private static final String TITLE="Select Exercise";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises);
-        Util.makeToolbar(this, TITLE, R.id.home_toolbar);
-        CloudData cd = new CloudData();
-        cd.getii();
+        setContentView(R.layout.activity_selectexercise);
+        Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
+
     }
 
     @Override
@@ -32,6 +29,5 @@ public class Exercises extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         return Util.optionItemSelected(this, item);
     }
-
 
 }
