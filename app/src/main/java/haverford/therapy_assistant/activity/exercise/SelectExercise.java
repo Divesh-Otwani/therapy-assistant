@@ -1,33 +1,27 @@
 package haverford.therapy_assistant.activity.exercise;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.cloud.CloudData;
 
-public class Exercises extends AppCompatActivity {
-    public static final String TITLE = "Exercises";
+public class SelectExercise extends AppCompatActivity{
+    private static final String TITLE="Select Exercise";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises);
-        Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
+        setContentView(R.layout.activity_selectexercise);
+        Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
 
+        // TODO: remove this code when time
+        TextView v = this.findViewById(R.id.testTextView);
+        v.setOnClickListener(Util.makeActStartListener(this, DoExercise.class));
 
-
-        FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
-        doExercise.setSize(FloatingActionButton.SIZE_AUTO);
-        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
-        CloudData cd = new CloudData();
-        cd.getii();
     }
 
     @Override
@@ -40,6 +34,5 @@ public class Exercises extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         return Util.optionItemSelected(this, item);
     }
-
 
 }

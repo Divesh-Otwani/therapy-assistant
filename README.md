@@ -26,23 +26,61 @@ int function(){
 # Things to do in next week
 
 
- * Divesh: 
-  * Explain how manu bars can be made and used. (Tonight).
-  * Have 5 basic activities for exercises + home ready -- even if they
+ * Divesh: Have 5 basic activities for exercises + home ready -- even if they
    just display text (but in the right spots with good extensible changeable
    layouts)
  * Brian: Pair program with Zach on (1) the several resources classes and (2)
-   making 3 resource activities; really basic (display
-   text but in the right places)
+   making 3 resource activities; really basic (display text but in the right
+   places)
  * Yasmine: Implement pulling of resources.
 
 
+# Things To Discuss
 
-# Resources
+ * Adding articles and stuff via an app for the therapist (or maybe just an
+   online interface?)
+ * Divesh wants the functions to be smaller than 40 lines
+ * Divesh thinks we should each write a design document explaining the purpose
+   of our part of the code and the high level implementation; then combine these
+   into a large design document.
+
+
+
+# Developer Resources and Key SO Links
 
 
  * https://developer.android.com/guide/topics/ui/
  * https://developer.android.com/reference/android/util/JsonWriter
+ * Excellent for design: https://material.io/
+
+# TODO
+
+
+## Urgent
+
+ * Remove repeated code with SelectExercise Activity -- need a base activity
+   eventually!!
+ * Add a return home item in the menu
+
+## Eventually
+
+
+ * On the homepage, set a few resources and exercise as favorites
+   * Maybe add buttons to star exercises and you can unstar them by long
+     pressing
+   * Add, for each resource (in listviews) buttons to star them
+   * Add a FAQ page explaining these things
+ * Make all the layouts relative to the screen size (not orientation, for now...)
+ * Make things pretty
+   * Add images
+   * Add a nice theme
+   * Add animations
+   * Make the overflow menu's logo something different and nice
+
+
+# Practical Testing
+
+ * We should test this on two different phones for prolonged use
 
 
 

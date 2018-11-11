@@ -1,5 +1,7 @@
 package haverford.therapy_assistant.data;
 
+import org.json.JSONObject;
+
 import java.util.Optional;
 
 import haverford.therapy_assistant.data.answer.Answer;
@@ -36,8 +38,8 @@ public class Question {
      * Returns real value of answer. Only call after checking isAnswered.
      * @return
      */
-    public Object getAnswer(){
-        if(isAnswered()) return mAnswer.get().getValue();
+    public JSONObject getAnswer(){
+        if(isAnswered()) return mAnswer.get().toJSON();
         else return null;
     }
 

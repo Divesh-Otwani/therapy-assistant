@@ -6,5 +6,6 @@ import haverford.therapy_assistant.data.QuestionType;
 
 public abstract class Answer {
     public abstract QuestionType getQuestionType();
-    public abstract JSONObject getValue();
+    public abstract JSONObject toJSON();
+    public abstract Answer fromJSON(JSONObject obj);
 }

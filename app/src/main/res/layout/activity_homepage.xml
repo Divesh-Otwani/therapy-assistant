@@ -12,39 +12,49 @@
         android:id="@+id/home_toolbar"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_weight="1"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/home_top"
+    <TextView
+        android:id="@+id/tv1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Favorite Resources" />
 
 
-    </android.support.v4.view.ViewPager>
-
-    <LinearLayout
-        android:id="@+id/home_bot"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_height="60pt"
+        >
 
-        <Button
-            android:id="@+id/resources"
+        <LinearLayout
+            android:id="@+id/fav_resources"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/title_activity_resources" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
 
-        <Button
-            android:id="@+id/exercises"
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Favorite Exercises" />
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="60pt"
+        >
+
+        <LinearLayout
+            android:id="@+id/fav_exercises"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/title_activity_exercises" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+
 </LinearLayout>

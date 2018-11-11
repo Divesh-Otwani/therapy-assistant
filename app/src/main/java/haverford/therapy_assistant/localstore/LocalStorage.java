@@ -17,10 +17,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Vector;
 
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
+import haverford.therapy_assistant.data.QuestionType;
+import haverford.therapy_assistant.data.answer.Answer;
 
 public class LocalStorage {
 
@@ -53,13 +56,22 @@ public class LocalStorage {
             return null;
         }
     }
+    private FileWriter getFileWriter(File toWrite)
+    {
+        try {
+            return new FileWriter(toWrite);
+        } catch(IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      *  Encodes the exercise in Json.
      * @param writer
      * @param e
      */
-    private void writeExercise(JsonWriter writer, Exercise e) throws IOException
+    private void writeExercise(JsonWriter writer, Exercise e) throws IOException, JSONException
     {
         writer.beginObject();
         writer.name("uID").value(e.getUID());
@@ -77,10 +89,34 @@ public class LocalStorage {
      * @param writer
      * @param questions
      */
-    private void writeQuestionList(JsonWriter writer, Vector<Question> questions) throws IOException{
+    private void writeQuestionList(JsonWriter writer, Vector<Question> questions) throws IOException,JSONException{
         writer.beginArray();
         for(Question q : questions)
             writeQuestion(writer,q);
+        writer.endArray();
+    }
+
+    /**
+     * Encodes a question list in Json.
+     * @param writer
+     * @param answers
+     */
+    private void writeJSONArray(JsonWriter writer, JSONArray answers) throws IOException, JSONException{
+        writer.beginArray();
+        for(int i =0; i<answers.length(); i++) {
+            boolean valB = answers.optBoolean(i);
+            double valD = answers.optDouble(i,-11);
+            String valS = answers.optString(i,null);
+            JSONArray valJA = answers.optJSONArray(i);
+            JSONObject valJO = answers.optJSONObject(i);
+
+            if(valJO!=null) {writeAnswer(writer,valJO);}
+            else if (valJA!=null) {writeJSONArray(writer,valJA); }
+            else if (valS!=null) {writer.value(valS); }
+            else if (valD!=-11) {writer.value(valD); }
+            else if (answers.isNull(i)){writer.nullValue();}
+            else writer.value(valB);
+        }
         writer.endArray();
     }
 
@@ -89,7 +125,7 @@ public class LocalStorage {
      * @param writer
      * @param question
      */
-    private void writeQuestion(JsonWriter writer, Question question) throws IOException{
+    private void writeQuestion(JsonWriter writer, Question question) throws IOException,JSONException{
         writer.beginObject();
 
         writer.name("uID").value(question.getUID());
@@ -98,17 +134,38 @@ public class LocalStorage {
         writer.name("prompt").value(question.getPrompt());
         if(!question.isAnswered()) writer.name("answer").nullValue();
         else {
-            Object ans = question.getAnswer();
-            switch(question.getQType())
-            {
-                case TextAnswer: writer.name("answer").value((String) ans);
-                break;
-                case PercentageAnswer: writer.name("answer").value((double) ans);
-                break;
-                case ScaleOfTenAnswer: writer.name("answer").value((int) ans);
-                break;
-                default: writer.name("answer").nullValue();
-            }
+            writer.name("answer");
+            writeAnswer(writer,question.getAnswer());
+
+        }
+
+        writer.endObject();
+    }
+
+    /**
+     * Encodes answer in json.
+     * @param writer
+     * @param answer
+     */
+    private void writeAnswer(JsonWriter writer, JSONObject answer) throws IOException, JSONException{
+        writer.beginObject();
+
+        Iterator<String> iterator = answer.keys();
+
+        while(iterator.hasNext()) {
+            String next = iterator.next();
+            boolean valB = answer.optBoolean(next);
+            double valD = answer.optDouble(next,-11);
+            String valS = answer.optString(next,"-1Brian");
+            JSONArray valJA = answer.optJSONArray(next);
+            JSONObject valJO = answer.optJSONObject(next);
+
+            if(valJO!=null) {writer.name(next);writeAnswer(writer,valJO);}
+            else if (valJA!=null) {writer.name(next);writeJSONArray(writer,valJA); }
+            else if (valS!=null) {writer.name(next).value(valS); }
+            else if (valD!=-11) {writer.name(next).value(valD); }
+            else if (answer.isNull(next)){writer.name(next).nullValue();}
+            else writer.name(next).value(valB);
         }
 
         writer.endObject();
@@ -130,11 +187,39 @@ public class LocalStorage {
         try {
             writeExercise(writer,e);
             writer.close();
-        }catch(IOException ex) {
+        }catch(Exception ex) {
             ex.printStackTrace();
         }
 
         return writer!=null;
+    }
+
+    /**
+     * Returns answer object from question.
+     * TODO: implement
+     * @param question
+     * @return
+     */
+    private Answer interpretAnswer(JSONObject question) {
+
+
+        return null;
+    }
+
+    /**
+     * Converts Jsonobject to question data type.
+     * @param question
+     * @return
+     */
+    private Question interpretQuestion(JSONObject question) throws  JSONException{
+        Question out = new Question(question.getInt("uID"),
+                QuestionType.values()[question.getInt("qType")],
+                                    question.getString("prompt"),
+                                    question.getString("name"));
+
+        out.answerQuestion(interpretAnswer(question));
+
+        return out;
     }
 
     /**
@@ -147,7 +232,8 @@ public class LocalStorage {
 
         for(int i = 0; i<questions.length(); i++) {
             JSONObject question = questions.getJSONObject(i);
-
+            Question q = interpretQuestion(question);
+            out.add(q);
         }
 
         return out;
