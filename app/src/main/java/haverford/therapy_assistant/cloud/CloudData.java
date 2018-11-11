@@ -11,18 +11,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Vector;
 
+import haverford.therapy_assistant.data.ArticleResource;
+import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
+import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.Resource;
 
 public class CloudData {
     private static final String TAG = "ViewDatabase";
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference("Exercise");
+    private DatabaseReference ref = database.getReference();
     private int ii;
     public CloudData() {
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.child("Exercise").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,41 +65,107 @@ public class CloudData {
     }
     // Implement this function
     // Have a few test exercises in there for now.
-    /*public void pullExercises(){
-        ref.child("Exercise").addValueEventListener(new ValueEventListener() {
+    public Vector<Exercise> pullExercises(){
+        final Vector<Exercise> ve = new Vector<Exercise>();
+        final HashMap<Integer, Question> hm = new HashMap<>();
+        final int[] id2 = new int[1];
 
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
-
-                for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
-
-                }
-            }
-
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
-        }
-    });
-    }
-
-
-    // Also implement this
-    public Vector<Question> pullResources(){
-        Vector<Question> qu = new Vector<Question>();
         ref.child("Question").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
 
-                    for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
-
+                    String name = "";
+                    String prompt= "";
+                    QuestionType qt = null;
+                    for (DataSnapshot unique : uniqueKeySnapshot.getChildren()) {
+                        if (unique.getKey() == "Name") {
+                            name = (String)unique.getValue();
+                        } else if (unique.getKey() == "UID") {
+                            id2[0] = (int)unique.getValue();
+                        } else if(unique.getKey() == "Qtype"){
+                            qt = QuestionType.values()[(int)unique.getValue()];
+                        }else if(unique.getKey() == "Text"){
+                            prompt = (String)unique.getValue();
+                        }
                     }
+                    hm.put(id2[0], new Question(id2[0], qt, prompt, name));
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "WHAT Question??: " + String.valueOf(databaseError));
+            }
+        });
+
+        ref.child("Exercise").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
+                    int id = -1;
+                    String name = "";
+                    Vector<Question> vq = new Vector<Question>();
+                    for (DataSnapshot unique : uniqueKeySnapshot.getChildren()) {
+                        if (unique.getKey() == "Name") {
+                            name = (String)unique.getValue();
+                        } else if (unique.getKey() == "UID") {
+                            id = (int)unique.getValue();
+                        } else {
+                            for (DataSnapshot i : unique.getChildren()) {
+                                vq.add(hm.get(i.getValue()));
+
+
+                            }
+                        }
+                    }
+                    ve.add(new Exercise(id, name, vq));
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
+            }
+        });
+        return ve;
+    }
+
+
+    // Also implement this
+    public Vector<Resource> pullResources(){
+        final Vector<Resource> qu = new Vector<Resource>();
+        ref.child("Resource").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
+                    String name = "";
+                    int UID = -1;
+                    String title = "";
+                    String Description = "";
+                    int ResType = 0;
+                    for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
+                        if(unique.getKey() == "Name"){
+                            name = unique.getValue(String.class);
+                        }else if(unique.getKey() == "UID"){
+                            UID = unique.getValue(int.class);
+                        }else if(unique.getKey() == "Title"){
+                            title = unique.getValue(String.class);
+                        }else if(unique.getKey() == "Description"){
+                            Description = unique.getValue(String.class);
+                        }else if(unique.getKey() == "ResType"){
+                            ResType = unique.getValue(int.class);
+                        }
+                    }
+                    qu.add(new Resource(name, UID, title, Description, ResType));
                 }
 
 
@@ -105,9 +176,44 @@ public class CloudData {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
             }
+
         });
 
-        return qu;}*/
+        return qu;}
+
+
+    public Vector<ArticleResource> pullArticleResources(){
+        final Vector<ArticleResource> qu = new Vector<ArticleResource>();
+        ref.child("Resource").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
+
+                    int UID = -1;
+                    String url = "";
+                    for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
+                        if(unique.getKey() == "UID"){
+                            UID = unique.getValue(int.class);
+                        }else if(unique.getKey() == "URL"){
+                            url = unique.getValue(String.class);
+                        }
+                    }
+                    qu.add(new ArticleResource(UID,url));
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
+            }
+
+        });
+
+        return qu;}
 
 
 
