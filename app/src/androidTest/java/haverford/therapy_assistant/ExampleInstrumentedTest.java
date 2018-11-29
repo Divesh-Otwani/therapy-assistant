@@ -7,6 +7,14 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.sql.Date;
+import java.util.Vector;
+
+import haverford.therapy_assistant.data.Exercise;
+import haverford.therapy_assistant.data.Question;
+import haverford.therapy_assistant.data.QuestionType;
+import haverford.therapy_assistant.localstore.LocalStorage;
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,5 +30,22 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("haverford.therapy_assistant", appContext.getPackageName());
+    }
+
+
+
+    @Test
+    public void test_Storage() {
+        Vector<Question> inQ =  new Vector<Question>();
+        inQ.add(new Question(8,QuestionType.TextAnswer,"Is this a test?", "Test Question"));
+
+        Exercise inTest = new Exercise(88,"Test Exercise",inQ);
+
+        LocalStorage store = new LocalStorage(InstrumentationRegistry.getTargetContext());
+
+        store.storeExercise(Date.valueOf("2018-9-27"),inTest);
+
+        Exercise outTest = store.queryExercises().get(Date.valueOf("2018-9-27")).get(0);
+        assertTrue(outTest.getName().equals("Test Exercise"));
     }
 }
