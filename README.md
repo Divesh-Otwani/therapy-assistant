@@ -23,34 +23,19 @@ int function(){
 
 ```
 
-# General Direction Now
-
- * Converting the data we pull or read to nice views via adapters
-    * Basically populating a bunch of listviews or gridviews
-
 
 # This week
 
  * Fix a tiny UI thing to look nice (if you have time)
 
 
-
 # Things to do in next, next week
 
- * Change names for Resource classes and layout/resources to be general and not
-   cbt specific
+ * Get the core functionality to display at a basic level
  * Make an activity to display each type of resource (Or call another app on
    click): e.g. article resource v.s. video resource
 
 
-# Things To Discuss
-
- * Adding articles and stuff via an app for the therapist (or maybe just an
-   online interface?)
- * Divesh wants the functions to be smaller than 40 lines
- * Divesh thinks we should each write a design document explaining the purpose
-   of our part of the code and the high level implementation; then combine these
-   into a large design document.
 
 
 
