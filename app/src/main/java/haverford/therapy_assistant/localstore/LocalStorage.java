@@ -12,9 +12,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,7 +42,7 @@ public class LocalStorage {
      * @return Returns File representing the directory
      */
     private File getDir(Date date) {
-        return context.getDir(date.toString(),Context.MODE_PRIVATE);
+        return context.getDir(date.toString(),Context.MODE_APPEND);
     }
 
     /**
@@ -50,7 +52,8 @@ public class LocalStorage {
     private JsonWriter getJSONWriter(File toWrite)
     {
         try {
-            return new JsonWriter(new FileWriter(toWrite));
+            //return new JsonWriter(new FileWriter(toWrite));
+            return new JsonWriter(new OutputStreamWriter(new FileOutputStream(toWrite),"UTF-8"));
         } catch(IOException e) {
             e.printStackTrace();
             return null;
@@ -182,6 +185,8 @@ public class LocalStorage {
         String exerciseFilename = "exercise-"+date.toString()+"-"+System.nanoTime()+".json";
         File storedExercise = new File(targetDir,exerciseFilename);
 
+        //storedExercise.createNewFile();
+
         JsonWriter writer = getJSONWriter(storedExercise);
         writer.setIndent("  ");
         try {
@@ -191,6 +196,7 @@ public class LocalStorage {
             ex.printStackTrace();
         }
 
+        double len = storedExercise.length();
         return writer!=null;
     }
 
@@ -266,10 +272,13 @@ public class LocalStorage {
      */
     private Exercise generateExercise(File file) throws IOException {
 
+        double len = file.length();
+
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String json = null;
         String next = null;
+        //next = reader.readLine();
 
         while((next = reader.readLine())!=null) {
             if(json==null) json = next+"\n";
@@ -307,12 +316,13 @@ public class LocalStorage {
     public HashMap<Date,Vector<Exercise>> queryExercises(){
         HashMap<Date, Vector<Exercise>> out = new HashMap<Date, Vector<Exercise>>();
 
-        String[] dirList = context.fileList();
+        String[] dirList = context.getDataDir().list();
 
         for(String dir : dirList) {
             try {
-                Date date = Date.valueOf(dir);
-                File dateDir = context.getDir(dir, Context.MODE_PRIVATE);
+                String dateGet = dir.substring(4);
+                Date date = Date.valueOf(dateGet);
+                File dateDir = context.getDir(dateGet, Context.MODE_APPEND);
                 if(dateDir.isDirectory()) {
                     File[] exercises = dateDir.listFiles();
                     Vector<Exercise> exer = generateExercises(exercises);

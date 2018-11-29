@@ -19,6 +19,7 @@ public class Question {
         mQType = qtype;
 	    mPrompt = prompt;
 	    mName = name;
+	    mAnswer = Optional.empty();
     }
 
 
