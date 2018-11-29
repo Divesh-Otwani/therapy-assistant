@@ -13,6 +13,9 @@
 .gradle
 /build/
 
+# NOT the app.iml file
+/app/app.iml
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
