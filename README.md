@@ -6,7 +6,7 @@ behavioral therapy.
 
 # Design
 
-![Design Outline](/for-readme/main-activites.jpg)
+![Design Outline](/for-readme/main-activities.jpg)
 
 Above we have the core activities that make the application.
 
