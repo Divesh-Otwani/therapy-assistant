@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import haverford.therapy_assistant.data.answer.Answer;
 
-public class TextAnswerFragment extends AnswerFragment {
+public class ScaleOfTenAnswerFragment extends AnswerFragment {
     @Override
     public AnswerFragment newInstance() {
         AnswerFragment out = new TextAnswerFragment();
