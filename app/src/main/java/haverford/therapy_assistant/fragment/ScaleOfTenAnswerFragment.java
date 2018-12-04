@@ -8,6 +8,7 @@ import android.widget.SeekBar;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
 
 public class ScaleOfTenAnswerFragment extends AnswerFragment {
 
@@ -56,6 +57,6 @@ public class ScaleOfTenAnswerFragment extends AnswerFragment {
 
     @Override
     public Answer getAnswer() {
-        return null;
+        return new ScaleOfTenAnswer(currentAnswer);
     }
 }

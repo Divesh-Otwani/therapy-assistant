@@ -8,4 +8,5 @@ public abstract class Answer {
     public abstract QuestionType getQuestionType();
     public abstract JSONObject toJSON();
     public abstract Answer fromJSON(JSONObject obj);
+    public abstract Object getValue();
 }

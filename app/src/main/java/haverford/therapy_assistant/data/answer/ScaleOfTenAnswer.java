@@ -3,20 +3,18 @@ package haverford.therapy_assistant.data.answer;
 import org.json.JSONObject;
 
 import haverford.therapy_assistant.data.QuestionType;
-import haverford.therapy_assistant.data.answer.Answer;
 
-public class TextAnswer extends Answer {
+public class ScaleOfTenAnswer extends Answer {
 
-    private String mAnswer;
+    private Integer mAnswer;
 
-    public TextAnswer(String ans) {
-        mAnswer = ans;
+    public ScaleOfTenAnswer(int answer) {
+        mAnswer = answer;
     }
-
 
     @Override
     public QuestionType getQuestionType() {
-        return QuestionType.TextAnswer;
+        return QuestionType.ScaleOfTenAnswer;
     }
 
     @Override
@@ -29,6 +27,8 @@ public class TextAnswer extends Answer {
         return null;
     }
 
-    public String getValue() {return mAnswer;}
-
+    @Override
+    public Integer getValue() {
+        return mAnswer;
+    }
 }

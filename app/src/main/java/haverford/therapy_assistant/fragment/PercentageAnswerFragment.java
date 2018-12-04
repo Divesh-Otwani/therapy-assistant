@@ -9,6 +9,7 @@ import com.triggertrap.seekarc.SeekArc;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.PercentageAnswer;
 
 public class PercentageAnswerFragment extends AnswerFragment {
 
@@ -57,6 +58,6 @@ public class PercentageAnswerFragment extends AnswerFragment {
 
     @Override
     public Answer getAnswer() {
-        return null;
+        return new PercentageAnswer(currentAnswer);
     }
 }
