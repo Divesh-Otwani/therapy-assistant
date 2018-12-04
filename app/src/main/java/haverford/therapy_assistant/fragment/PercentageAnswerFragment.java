@@ -5,12 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.triggertrap.seekarc.SeekArc;
+
+import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.answer.Answer;
 
 public class PercentageAnswerFragment extends AnswerFragment {
+
+    private int currentAnswer;
+
     @Override
     public AnswerFragment newInstance() {
-        AnswerFragment out = new TextAnswerFragment();
+        AnswerFragment out = new PercentageAnswerFragment();
 
         return out;
     }
@@ -23,10 +29,30 @@ public class PercentageAnswerFragment extends AnswerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View v = inflater.inflate(R.layout.percentage_answer,container,false);
 
 
+        SeekArc arc = v.findViewById(R.id.seekArc);
 
-        return null;
+        arc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+            @Override
+            public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
+                currentAnswer = i;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekArc seekArc) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekArc seekArc) {
+
+            }
+        });
+
+
+        return v;
     }
 
     @Override

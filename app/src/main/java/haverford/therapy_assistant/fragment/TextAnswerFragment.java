@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.answer.Answer;
 
 public class TextAnswerFragment extends AnswerFragment {
@@ -23,10 +24,10 @@ public class TextAnswerFragment extends AnswerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View v = inflater.inflate(R.layout.text_answer,container,false);
 
 
-
-        return null;
+        return v;
     }
 
     @Override
