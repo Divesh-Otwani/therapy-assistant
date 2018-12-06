@@ -26,6 +26,9 @@ import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.PercentageAnswer;
+import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
+import haverford.therapy_assistant.data.answer.TextAnswer;
 
 public class LocalStorage {
 
@@ -159,7 +162,7 @@ public class LocalStorage {
             String next = iterator.next();
             boolean valB = answer.optBoolean(next);
             double valD = answer.optDouble(next,-11);
-            String valS = answer.optString(next,"-1Brian");
+            String valS = answer.optString(next,null);
             JSONArray valJA = answer.optJSONArray(next);
             JSONObject valJO = answer.optJSONObject(next);
 
@@ -203,13 +206,18 @@ public class LocalStorage {
     /**
      * Returns answer object from question.
      * TODO: implement
-     * @param question
+     * @param answer
      * @return
      */
-    private Answer interpretAnswer(JSONObject question) {
+    private Answer interpretAnswer(QuestionType qType, JSONObject answer) throws  JSONException {
 
-
-        return null;
+        switch (qType)
+        {
+            case TextAnswer: return new TextAnswer(null).fromJSON(answer);
+            case PercentageAnswer: return new PercentageAnswer(0).fromJSON(answer);
+            case ScaleOfTenAnswer: return new ScaleOfTenAnswer(0).fromJSON(answer);
+            default: return null;
+        }
     }
 
     /**
@@ -222,8 +230,9 @@ public class LocalStorage {
                 QuestionType.values()[question.getInt("qType")],
                                     question.getString("prompt"),
                                     question.getString("name"));
-
-        out.answerQuestion(interpretAnswer(question));
+        if(!question.isNull("answer")) {
+            out.answerQuestion(interpretAnswer(QuestionType.values()[question.getInt("qType")], question.getJSONObject("answer")));
+        }
 
         return out;
     }

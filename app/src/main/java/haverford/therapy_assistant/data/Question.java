@@ -1,5 +1,6 @@
 package haverford.therapy_assistant.data;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Optional;
@@ -29,7 +30,9 @@ public class Question {
      * @return True if answer is the right type.
      */
     public boolean answerQuestion(Answer ans){
-        return false;
+        if(ans==null) return false;
+        mAnswer = Optional.of(ans);
+        return mAnswer.isPresent();
     }
 
     public boolean isAnswered(){return mAnswer.isPresent();}
@@ -39,9 +42,11 @@ public class Question {
      * Returns real value of answer. Only call after checking isAnswered.
      * @return
      */
-    public JSONObject getAnswer(){
-        if(isAnswered()) return mAnswer.get().toJSON();
-        else return null;
+    public JSONObject getAnswer() {
+        try {
+            if (isAnswered()) return mAnswer.get().toJSON();
+            else return null;
+        }catch(JSONException e){e.printStackTrace(); return null;}
     }
 
     public int getUID(){return mUID;}
