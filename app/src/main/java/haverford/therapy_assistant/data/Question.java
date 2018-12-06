@@ -53,4 +53,8 @@ public class Question {
     public QuestionType getQType(){return mQType;}
     public String getPrompt(){return mPrompt;}
     public String getName(){return mName;}
+
+    public String toString(){
+        return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"qType\": "+mQType+",\n\t\"prompt\": "+mPrompt+",\n\t\"answer\": "+(mAnswer.isPresent() ? mAnswer.get().toString() : "NULL")+"\n}";
+    }
 }
