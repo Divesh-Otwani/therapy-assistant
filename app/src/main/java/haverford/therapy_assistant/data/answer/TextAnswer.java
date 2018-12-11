@@ -22,8 +22,10 @@ public class TextAnswer extends Answer {
         return null;
     }
 
-    public JSONObject getValue() {
+    public JSONObject getAnswer() {
         return null;
     }
+
+
 
 }

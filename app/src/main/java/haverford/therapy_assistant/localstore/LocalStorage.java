@@ -3,6 +3,7 @@ package haverford.therapy_assistant.localstore;
 // Brian should work primarily in this package.
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.util.JsonWriter;
 
 import org.json.JSONArray;
@@ -16,8 +17,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import haverford.therapy_assistant.data.Exercise;
@@ -28,6 +31,7 @@ import haverford.therapy_assistant.data.answer.Answer;
 public class LocalStorage {
 
     private Context context;
+    private List<DataSetObserver> mObservers = new ArrayList<DataSetObserver>();
 
     public LocalStorage(Context c){
         context = c;
@@ -82,6 +86,7 @@ public class LocalStorage {
             writeQuestionList(writer,e.getQuestions());
         }
         writer.endObject();
+        notifyObservers();
     }
 
     /**
@@ -94,6 +99,7 @@ public class LocalStorage {
         for(Question q : questions)
             writeQuestion(writer,q);
         writer.endArray();
+        notifyObservers();
     }
 
     /**
@@ -140,6 +146,7 @@ public class LocalStorage {
         }
 
         writer.endObject();
+        notifyObservers();
     }
 
     /**
@@ -190,8 +197,9 @@ public class LocalStorage {
         }catch(Exception ex) {
             ex.printStackTrace();
         }
-
+        notifyObservers();
         return writer!=null;
+
     }
 
     /**
@@ -326,6 +334,19 @@ public class LocalStorage {
         }
 
         return out;
+    }
+    protected void notifyObservers(){
+        for(DataSetObserver observer : mObservers){
+            observer.onChanged();
+            observer.onInvalidated();
+        }
+    }
+    public void addObserver(DataSetObserver observer){
+        mObservers.add(observer);
+    }
+
+    public void removeObserver(DataSetObserver observer){
+        mObservers.remove(observer);
     }
 
 }

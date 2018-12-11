@@ -43,6 +43,11 @@ public class Question {
         else return null;
     }
 
+    public Answer getAnswerName(){
+        if(isAnswered()) return mAnswer.get();
+        else return null;
+    }
+
     public int getUID(){return mUID;}
     public QuestionType getQType(){return mQType;}
     public String getPrompt(){return mPrompt;}

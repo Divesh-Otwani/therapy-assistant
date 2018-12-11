@@ -3,6 +3,7 @@ package haverford.therapy_assistant.cloud;
 // Yasmine should work primiarly in this package
 // You can make constructors that take whatever inputs you choose
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,37 +23,32 @@ import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.Resource;
 
 public class CloudData {
-    private static final String TAG = "ViewDatabase";
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ref = database.getReference();
+    private String TAG = "ViewDatabase";
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
     private int ii;
     public CloudData() {
-        ref.child("Exercise").addValueEventListener(new ValueEventListener() {
-
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
+        /*ref.child("Exercise").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            /*for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
-
-                for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
-
-                }
-            }*/
-            ii = 10;
-            showData(dataSnapshot);
-
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                showData(dataSnapshot);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
-        });
+        });*/
+        Vector<Exercise> ve = new Vector<Exercise>();
+        pullExercises(ve);
+        Log.d(TAG, "in constructor pullexercise" + ve);
+
+
     }
 
-    public void getii(){
-        Log.d(TAG, "ii:" + ii);
-    }
+
     public void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
             for(DataSnapshot unique : uniqueKeySnapshot.getChildren()){
@@ -65,8 +61,8 @@ public class CloudData {
     }
     // Implement this function
     // Have a few test exercises in there for now.
-    public Vector<Exercise> pullExercises(){
-        final Vector<Exercise> ve = new Vector<Exercise>();
+    public void pullExercises(final Vector<Exercise> ve){
+        //final Vector<Exercise> ve = new Vector<Exercise>();
         final HashMap<Integer, Question> hm = new HashMap<>();
         final int[] id2 = new int[1];
 
@@ -89,8 +85,9 @@ public class CloudData {
                         }else if(unique.getKey() == "Text"){
                             prompt = (String)unique.getValue();
                         }
+                        hm.put(id2[0], new Question(id2[0], qt, prompt, name));
                     }
-                    hm.put(id2[0], new Question(id2[0], qt, prompt, name));
+
 
                 }
 
@@ -107,6 +104,7 @@ public class CloudData {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "In exercise");
                 for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
                     int id = -1;
                     String name = "";
@@ -123,10 +121,11 @@ public class CloudData {
 
                             }
                         }
+                        ve.add(new Exercise(id, name, vq));
                     }
-                    ve.add(new Exercise(id, name, vq));
-                }
 
+                }
+                Log.d(TAG, "What ve is" + ve.toString());
 
             }
 
@@ -134,8 +133,10 @@ public class CloudData {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "WHAT??: " + String.valueOf(databaseError));
             }
+
         });
-        return ve;
+        Log.d(TAG, "What ve is when trying to return " + ve.toString());
+        //return ve;
     }
 
 
