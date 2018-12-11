@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.maybe.Just;
 import haverford.therapy_assistant.data.maybe.Maybe;
 import haverford.therapy_assistant.data.maybe.Nothing;
 
@@ -34,8 +35,8 @@ public class Question implements Serializable {
      */
     public boolean answerQuestion(Answer ans){
         if(ans==null) return false;
-        mAnswer = Optional.of(ans);
-        return mAnswer.isPresent();
+        mAnswer = new Just(ans);
+        return mAnswer.getValue().isPresent();
     }
 
     public boolean isAnswered(){return mAnswer.getValue().isPresent();}
@@ -60,6 +61,11 @@ public class Question implements Serializable {
     public String getName(){return mName;}
 
     public String toString(){
-        return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"qType\": "+mQType+",\n\t\"prompt\": "+mPrompt+",\n\t\"answer\": "+(mAnswer.isPresent() ? mAnswer.get().toString() : "NULL")+"\n}";
+        return "{\n\t\"uID\": "
+                + mUID+",\n\t\"name\": "
+                + mName+",\n\t\"qType\": "
+                + mQType+",\n\t\"prompt\": "
+                + mPrompt+",\n\t\"answer\": "
+                + (mAnswer.getValue().isPresent() ? mAnswer.getValue().get().toString() : "NULL")+"\n}";
     }
 }
