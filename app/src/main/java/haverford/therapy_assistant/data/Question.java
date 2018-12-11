@@ -2,15 +2,18 @@ package haverford.therapy_assistant.data;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.maybe.Maybe;
+import haverford.therapy_assistant.data.maybe.Nothing;
 
 
-public class Question {
+public class Question implements Serializable {
     private int mUID;
     private QuestionType mQType;
-    private Optional<Answer> mAnswer;
+    private Maybe<Answer> mAnswer;
     private String mPrompt;
     private String mName;
 
@@ -19,7 +22,7 @@ public class Question {
         mQType = qtype;
 	    mPrompt = prompt;
 	    mName = name;
-	    mAnswer = Optional.empty();
+	    mAnswer = new Nothing();
     }
 
 
@@ -32,7 +35,7 @@ public class Question {
         return false;
     }
 
-    public boolean isAnswered(){return mAnswer.isPresent();}
+    public boolean isAnswered(){return mAnswer.getValue().isPresent();}
 
 
     /**
@@ -40,7 +43,7 @@ public class Question {
      * @return
      */
     public JSONObject getAnswer(){
-        if(isAnswered()) return mAnswer.get().toJSON();
+        if(isAnswered()) return mAnswer.getValue().get().toJSON();
         else return null;
     }
 

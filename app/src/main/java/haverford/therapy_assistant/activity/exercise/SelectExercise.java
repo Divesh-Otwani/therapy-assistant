@@ -1,9 +1,12 @@
 package haverford.therapy_assistant.activity.exercise;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import haverford.therapy_assistant.R;
@@ -19,8 +22,19 @@ public class SelectExercise extends AppCompatActivity{
         Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
 
         // TODO: remove this code when time
+        final Context self = this;
         TextView v = this.findViewById(R.id.testTextView);
-        v.setOnClickListener(Util.makeActStartListener(this, DoExercise.class));
+        v.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     Intent i = new Intent(self, DoExercise.class);
+                                     Bundle b = new Bundle();
+                                     b.putSerializable("exercise_arg", Util.util_exercise);
+                                     i.putExtras(b);
+                                     startActivity(i);
+                                 }
+                             }
+        );
 
     }
 

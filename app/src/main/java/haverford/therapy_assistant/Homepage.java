@@ -1,6 +1,7 @@
 package haverford.therapy_assistant;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 
 import haverford.therapy_assistant.Util;
 import haverford.therapy_assistant.activity.exercise.Exercises;
+import haverford.therapy_assistant.activity.exercise.SelectExercise;
 import haverford.therapy_assistant.activity.resource.Resources;
 
 public class Homepage extends AppCompatActivity {
@@ -30,6 +32,11 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         Util.makeToolbar(this, TITLE, R.id.home_toolbar);
+
+        // Set up FAB
+        FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab_home);
+        doExercise.setSize(FloatingActionButton.SIZE_AUTO);
+        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
 
     }
 

@@ -1,5 +1,7 @@
 package haverford.therapy_assistant.data;
 
-public enum QuestionType {
+import java.io.Serializable;
+
+public enum QuestionType implements Serializable {
     TextAnswer, PercentageAnswer, ScaleOfTenAnswer
 }

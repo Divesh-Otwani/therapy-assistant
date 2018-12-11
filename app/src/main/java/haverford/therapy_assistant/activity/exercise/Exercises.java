@@ -22,7 +22,7 @@ public class Exercises extends AppCompatActivity {
         Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
 
 
-
+        // Set up FAB
         FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
         doExercise.setSize(FloatingActionButton.SIZE_AUTO);
         doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
