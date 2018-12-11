@@ -2,11 +2,15 @@
     <string name="app_name">therapy-assistant</string>
     <string name="title_activity_exercises">Exercises</string>
     <string name="title_activity_resources">Resources</string>
-    <string name="title_activity_doexercise">Exercise Log</string>
+    <string name="title_activity_doexercise"></string>
     <string name="title_activity_homepage">Homepage</string>
     <string name="def">NONE</string>
     <string name="title_activity_cbt_resources">CBT Resources</string>
     <string name="title_activity_do_exercise">DoExercise</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="empty"></string>
+
     <string name="section_format">Hello World from section: %1$d</string>
 </resources>

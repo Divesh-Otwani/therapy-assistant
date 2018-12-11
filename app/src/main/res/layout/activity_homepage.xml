@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Homepage">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/home_toolbar"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        />
+    <LinearLayout
+        android:id="@+id/pointless_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/home_toolbar"
+            android:layout_width="100dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/pointless_home"
+        android:text="Favorite Resources"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:text="Favorite Resources" />
+        android:textStyle="bold" />
 
 
     <HorizontalScrollView
+        android:layout_below="@+id/tv1"
+        android:id="@+id/fav_resourcesview"
         android:layout_width="match_parent"
-        android:layout_height="60pt"
-        >
+        android:layout_height="60pt">
 
         <LinearLayout
             android:id="@+id/fav_resources"
@@ -37,17 +46,18 @@
 
     <TextView
         android:id="@+id/tv2"
+        android:layout_below="@+id/fav_resourcesview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Favorite Exercises"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:text="Favorite Exercises" />
+        android:textStyle="bold" />
 
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="60pt"
-        >
+        android:layout_below="@+id/tv2"
+        android:layout_height="60pt">
 
         <LinearLayout
             android:id="@+id/fav_exercises"
@@ -57,4 +67,14 @@
     </HorizontalScrollView>
 
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/exercises_fab_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        android:clickable="true" />
+
+</RelativeLayout>

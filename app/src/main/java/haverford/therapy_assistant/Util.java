@@ -11,16 +11,36 @@ import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
 
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Vector;
 
 import haverford.therapy_assistant.activity.exercise.Exercises;
 import haverford.therapy_assistant.activity.resource.Resources;
 import haverford.therapy_assistant.activity.exercise.SelectExercise;
+import haverford.therapy_assistant.data.Exercise;
+import haverford.therapy_assistant.data.Question;
+import haverford.therapy_assistant.data.QuestionType;
+import haverford.therapy_assistant.data.answer.TextAnswer;
 
 /**
  * A collection of top level android utilities to avoid repeating code.
  */
 public class Util {
 
+    public static Question util_q1 = new Question(
+            0
+            , QuestionType.TextAnswer
+            ,"What ATs are you having?"
+            , "AT identification");
+    public static Question util_q2 = new Question(
+            1
+            , QuestionType.ScaleOfTenAnswer
+            ,"Rate your anxiety right now."
+            , "Anxiety Rating.");
+    private static Question[] util_arr_qs = {util_q1, util_q2};
+    public static Vector<Question> util_ques = new Vector(Arrays.asList(util_arr_qs));
+    public static Exercise util_exercise = new Exercise(0,"SomeExerciseNm", util_ques);
 
     /* Toolbar Utilities
     *
@@ -37,7 +57,6 @@ public class Util {
                                    String title, int toolbarID){
         // TODO: Change layout to be nicer
         Toolbar bar = act.findViewById(toolbarID);
-        Class rootLayout = act.getWindow().getDecorView().getRootView().getClass();
         LinearLayout.LayoutParams toolbarLayout =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -67,9 +86,6 @@ public class Util {
                 Util.startActivity(act, Exercises.class);
                 return true;
 
-            case R.id.menu_doexercise:
-                Util.startActivity(act, SelectExercise.class);
-                return true;
         }
         return false;
     }

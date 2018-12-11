@@ -13,9 +13,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +29,13 @@ import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.PercentageAnswer;
+import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
+import haverford.therapy_assistant.data.answer.TextAnswer;
 
 public class LocalStorage {
 
     private Context context;
-    private List<DataSetObserver> mObservers = new ArrayList<DataSetObserver>();
 
     public LocalStorage(Context c){
         context = c;
@@ -44,7 +48,7 @@ public class LocalStorage {
      * @return Returns File representing the directory
      */
     private File getDir(Date date) {
-        return context.getDir(date.toString(),Context.MODE_PRIVATE);
+        return context.getDir(date.toString(),Context.MODE_APPEND);
     }
 
     /**
@@ -54,7 +58,8 @@ public class LocalStorage {
     private JsonWriter getJSONWriter(File toWrite)
     {
         try {
-            return new JsonWriter(new FileWriter(toWrite));
+            //return new JsonWriter(new FileWriter(toWrite));
+            return new JsonWriter(new OutputStreamWriter(new FileOutputStream(toWrite),"UTF-8"));
         } catch(IOException e) {
             e.printStackTrace();
             return null;
@@ -163,7 +168,7 @@ public class LocalStorage {
             String next = iterator.next();
             boolean valB = answer.optBoolean(next);
             double valD = answer.optDouble(next,-11);
-            String valS = answer.optString(next,"-1Brian");
+            String valS = answer.optString(next,null);
             JSONArray valJA = answer.optJSONArray(next);
             JSONObject valJO = answer.optJSONObject(next);
 
@@ -189,6 +194,8 @@ public class LocalStorage {
         String exerciseFilename = "exercise-"+date.toString()+"-"+System.nanoTime()+".json";
         File storedExercise = new File(targetDir,exerciseFilename);
 
+        //storedExercise.createNewFile();
+
         JsonWriter writer = getJSONWriter(storedExercise);
         writer.setIndent("  ");
         try {
@@ -197,7 +204,8 @@ public class LocalStorage {
         }catch(Exception ex) {
             ex.printStackTrace();
         }
-        notifyObservers();
+
+        double len = storedExercise.length();
         return writer!=null;
 
     }
@@ -205,13 +213,18 @@ public class LocalStorage {
     /**
      * Returns answer object from question.
      * TODO: implement
-     * @param question
+     * @param answer
      * @return
      */
-    private Answer interpretAnswer(JSONObject question) {
+    private Answer interpretAnswer(QuestionType qType, JSONObject answer) throws  JSONException {
 
-
-        return null;
+        switch (qType)
+        {
+            case TextAnswer: return new TextAnswer(null).fromJSON(answer);
+            case PercentageAnswer: return new PercentageAnswer(0).fromJSON(answer);
+            case ScaleOfTenAnswer: return new ScaleOfTenAnswer(0).fromJSON(answer);
+            default: return null;
+        }
     }
 
     /**
@@ -224,8 +237,9 @@ public class LocalStorage {
                 QuestionType.values()[question.getInt("qType")],
                                     question.getString("prompt"),
                                     question.getString("name"));
-
-        out.answerQuestion(interpretAnswer(question));
+        if(!question.isNull("answer")) {
+            out.answerQuestion(interpretAnswer(QuestionType.values()[question.getInt("qType")], question.getJSONObject("answer")));
+        }
 
         return out;
     }
@@ -274,10 +288,13 @@ public class LocalStorage {
      */
     private Exercise generateExercise(File file) throws IOException {
 
+        double len = file.length();
+
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String json = null;
         String next = null;
+        //next = reader.readLine();
 
         while((next = reader.readLine())!=null) {
             if(json==null) json = next+"\n";
@@ -315,12 +332,13 @@ public class LocalStorage {
     public HashMap<Date,Vector<Exercise>> queryExercises(){
         HashMap<Date, Vector<Exercise>> out = new HashMap<Date, Vector<Exercise>>();
 
-        String[] dirList = context.fileList();
+        String[] dirList = context.getDataDir().list();
 
         for(String dir : dirList) {
             try {
-                Date date = Date.valueOf(dir);
-                File dateDir = context.getDir(dir, Context.MODE_PRIVATE);
+                String dateGet = dir.substring(4);
+                Date date = Date.valueOf(dateGet);
+                File dateDir = context.getDir(dateGet, Context.MODE_APPEND);
                 if(dateDir.isDirectory()) {
                     File[] exercises = dateDir.listFiles();
                     Vector<Exercise> exer = generateExercises(exercises);
@@ -334,19 +352,6 @@ public class LocalStorage {
         }
 
         return out;
-    }
-    protected void notifyObservers(){
-        for(DataSetObserver observer : mObservers){
-            observer.onChanged();
-            observer.onInvalidated();
-        }
-    }
-    public void addObserver(DataSetObserver observer){
-        mObservers.add(observer);
-    }
-
-    public void removeObserver(DataSetObserver observer){
-        mObservers.remove(observer);
     }
 
 }

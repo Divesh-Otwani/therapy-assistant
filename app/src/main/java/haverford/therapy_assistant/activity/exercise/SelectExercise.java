@@ -1,5 +1,6 @@
 package haverford.therapy_assistant.activity.exercise;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -124,6 +125,19 @@ public class SelectExercise extends AppCompatActivity{
 
             }
         });
+/*        final Context self = this;
+        TextView v = this.findViewById(R.id.testTextView);
+        v.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     Intent i = new Intent(self, DoExercise.class);
+                                     Bundle b = new Bundle();
+                                     b.putSerializable("exercise_arg", Util.util_exercise);
+                                     i.putExtras(b);
+                                     startActivity(i);
+                                 }
+                             }
+        );*/
 
     }
 

@@ -1,10 +1,11 @@
 package haverford.therapy_assistant.data;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
-public class Exercise {
+public class Exercise implements Serializable {
     private int mUID;
     private String mName;
     private Vector<Question> mQuestions;
@@ -20,5 +21,9 @@ public class Exercise {
     public String getName(){return mName;}
     public Vector<Question> getQuestions() {
         return mQuestions;
+    }
+
+    public String toString(){
+        return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"questions\": "+mQuestions.toString()+"\n}";
     }
 }

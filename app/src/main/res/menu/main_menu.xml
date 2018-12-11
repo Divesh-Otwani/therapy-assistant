@@ -12,8 +12,5 @@
         android:id="@+id/menu_exercises"
         android:title="@string/title_activity_exercises"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_doexercise"
-        android:title="@string/title_activity_doexercise"
-        app:showAsAction="never"/>
+
 </menu>

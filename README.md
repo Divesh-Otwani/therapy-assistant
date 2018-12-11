@@ -1,69 +1,46 @@
 # therapy-assistant
-This is an app to assist with certain therapies, starting with cognitive behavioral therapy.
+This is an app to assist with certain therapies by logging client exercises and
+providing resources. The only therapy currently supported is CBT, cognitive 
+behavioral therapy.
 
 
-# Coding Style Rules
+# Design
 
-1. Functions should be no longer than 40 lines of code
+![Design Outline](/for-readme/main-activities.jpg)
 
-2. Comments at the top of functions and classes, rarely in the middle of lines
-   of code. 
-
-   This is ok though:
-
-```java
-
-
-int function(){
-  x.do_something(); // this short comment is fine
-  // avoid this line comment!!!
-  y.dothis();
-  return 0;
-  }
-
-```
-
-# Things to do in next week
-
-
- * Divesh: Have 5 basic activities for exercises + home ready -- even if they
-   just display text (but in the right spots with good extensible changeable
-   layouts)
- * Brian: Pair program with Zach on (1) the several resources classes and (2)
-   making 3 resource activities; really basic (display text but in the right
-   places)
- * Yasmine: Implement pulling of resources.
-
-
-# Things To Discuss
-
- * Adding articles and stuff via an app for the therapist (or maybe just an
-   online interface?)
- * Divesh wants the functions to be smaller than 40 lines
- * Divesh thinks we should each write a design document explaining the purpose
-   of our part of the code and the high level implementation; then combine these
-   into a large design document.
+Above we have the core activities that make the application.
 
 
 
-# Developer Resources and Key SO Links
 
+# Active Development
+
+## To Work on This Week
+
+ * Divesh: Get the view pager working and use Brian's fragments. Also, make sure
+   you use observers.
+ * Yasmine: Make the right listadapters for the activities SelectExercise,
+   Exercises, CBTResources (this last activity should be renamed to
+   DisplayResources). Make sure things that are slow run on threads. Register
+   observers to update the views.
+ * Brian: Create simple fragments of different answer types and have these take
+   text input, a dial input to 100 and a nice scale from 1 to 10.
+ * Zach: Create an adapter for the grid view that displays resources.
+
+
+## Things to do next week
+
+ * Display real exercises and resources and go and see Professor Gordon.
+
+
+## Developer Resources and Key SO Links
 
  * https://developer.android.com/guide/topics/ui/
  * https://developer.android.com/reference/android/util/JsonWriter
  * Excellent for design: https://material.io/
 
-# TODO
 
-
-## Urgent
-
- * Remove repeated code with SelectExercise Activity -- need a base activity
-   eventually!!
- * Add a return home item in the menu
-
-## Eventually
-
+## Eventually, at the end
 
  * On the homepage, set a few resources and exercise as favorites
    * Maybe add buttons to star exercises and you can unstar them by long
@@ -76,12 +53,33 @@ int function(){
    * Add a nice theme
    * Add animations
    * Make the overflow menu's logo something different and nice
+ * Make the Exercise home page more complex to be one continuous scroll but
+   connect headers when you run out
 
 
-# Practical Testing
+## Practical Testing
 
- * We should test this on two different phones for prolonged use
+ * We should test this on two different phones
 
+## Coding Style Rules
+
+1. Functions should be no longer than 40 lines of code; ideally under 25.
+
+2. Comments should be at the top of functions and classes and 
+rarely in the middle of lines of code:
+
+
+```java
+
+/* Good descriptive comment */
+int function(){
+  x.do_something(); // this short comment is fine
+  // avoid this line comment!!!
+  y.dothis();
+  return 0;
+  }
+
+```
 
 
 

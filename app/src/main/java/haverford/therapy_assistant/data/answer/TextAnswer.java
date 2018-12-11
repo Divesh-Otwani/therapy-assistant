@@ -1,5 +1,6 @@
 package haverford.therapy_assistant.data.answer;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import haverford.therapy_assistant.data.QuestionType;
@@ -7,19 +8,16 @@ import haverford.therapy_assistant.data.answer.Answer;
 
 public class TextAnswer extends Answer {
 
+    private String mAnswer;
+
+    public TextAnswer(String ans) {
+        mAnswer = ans;
+    }
+
+
     @Override
     public QuestionType getQuestionType() {
-        return null;
-    }
-
-    @Override
-    public JSONObject toJSON() {
-        return null;
-    }
-
-    @Override
-    public Answer fromJSON(JSONObject obj) {
-        return null;
+        return QuestionType.TextAnswer;
     }
 
     public JSONObject getAnswer() {
@@ -28,4 +26,10 @@ public class TextAnswer extends Answer {
 
 
 
+    public String getValue() {return mAnswer;}
+
+    @Override
+    public Answer fromJSON(JSONObject obj) throws JSONException {
+        return new TextAnswer(obj.getString("value"));
+    }
 }
