@@ -1,5 +1,6 @@
 package haverford.therapy_assistant.data;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -32,7 +33,9 @@ public class Question implements Serializable {
      * @return True if answer is the right type.
      */
     public boolean answerQuestion(Answer ans){
-        return false;
+        if(ans==null) return false;
+        mAnswer = Optional.of(ans);
+        return mAnswer.isPresent();
     }
 
     public boolean isAnswered(){return mAnswer.getValue().isPresent();}
@@ -42,13 +45,21 @@ public class Question implements Serializable {
      * Returns real value of answer. Only call after checking isAnswered.
      * @return
      */
-    public JSONObject getAnswer(){
-        if(isAnswered()) return mAnswer.getValue().get().toJSON();
-        else return null;
+
+    public JSONObject getAnswer() {
+        try {
+            if (isAnswered()) return mAnswer.getValue().get().toJSON();
+            else return null;
+        }catch(JSONException e){e.printStackTrace(); return null;}
+
     }
 
     public int getUID(){return mUID;}
     public QuestionType getQType(){return mQType;}
     public String getPrompt(){return mPrompt;}
     public String getName(){return mName;}
+
+    public String toString(){
+        return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"qType\": "+mQType+",\n\t\"prompt\": "+mPrompt+",\n\t\"answer\": "+(mAnswer.isPresent() ? mAnswer.get().toString() : "NULL")+"\n}";
+    }
 }

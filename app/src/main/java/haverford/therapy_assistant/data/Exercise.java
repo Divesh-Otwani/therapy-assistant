@@ -22,4 +22,8 @@ public class Exercise implements Serializable {
     public Vector<Question> getQuestions() {
         return mQuestions;
     }
+
+    public String toString(){
+        return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"questions\": "+mQuestions.toString()+"\n}";
+    }
 }
