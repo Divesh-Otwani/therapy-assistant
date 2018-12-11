@@ -17,4 +17,10 @@ public class Resource {
         ResType = restype;
 
     }
+
+    /*
+
+    ACT
+    CBT
+     */
 }

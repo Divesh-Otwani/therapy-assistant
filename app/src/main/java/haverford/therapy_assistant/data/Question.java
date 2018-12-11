@@ -55,6 +55,11 @@ public class Question implements Serializable {
 
     }
 
+    public Answer getAnswerName(){
+        if(isAnswered()) return mAnswer.get();
+        else return null;
+    }
+
     public int getUID(){return mUID;}
     public QuestionType getQType(){return mQType;}
     public String getPrompt(){return mPrompt;}

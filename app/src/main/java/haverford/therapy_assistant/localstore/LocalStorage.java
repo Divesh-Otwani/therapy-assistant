@@ -3,6 +3,7 @@ package haverford.therapy_assistant.localstore;
 // Brian should work primarily in this package.
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.util.JsonWriter;
 
 import org.json.JSONArray;
@@ -18,8 +19,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import haverford.therapy_assistant.data.Exercise;
@@ -88,6 +91,7 @@ public class LocalStorage {
             writeQuestionList(writer,e.getQuestions());
         }
         writer.endObject();
+        notifyObservers();
     }
 
     /**
@@ -100,6 +104,7 @@ public class LocalStorage {
         for(Question q : questions)
             writeQuestion(writer,q);
         writer.endArray();
+        notifyObservers();
     }
 
     /**
@@ -146,6 +151,7 @@ public class LocalStorage {
         }
 
         writer.endObject();
+        notifyObservers();
     }
 
     /**
@@ -201,6 +207,7 @@ public class LocalStorage {
 
         double len = storedExercise.length();
         return writer!=null;
+
     }
 
     /**

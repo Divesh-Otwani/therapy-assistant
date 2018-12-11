@@ -6,8 +6,10 @@ import org.json.JSONObject;
 import haverford.therapy_assistant.data.QuestionType;
 
 public abstract class Answer {
-
+    private String mAnswer;
     public abstract QuestionType getQuestionType();
+    public String getValue(){return mAnswer;}
+
     public JSONObject toJSON() throws  JSONException{
         String jsonStart = "{\n\t\"value\": ";
         String jsonEnd = "\n}";

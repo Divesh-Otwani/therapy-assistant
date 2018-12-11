@@ -20,6 +20,12 @@ public class TextAnswer extends Answer {
         return QuestionType.TextAnswer;
     }
 
+    public JSONObject getAnswer() {
+        return null;
+    }
+
+
+
     public String getValue() {return mAnswer;}
 
     @Override
