@@ -28,13 +28,29 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="104dp">
-
             <LinearLayout
+                android:id="@+id/layout_recent_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <!--<TextView
+                    android:id="@+id/exercise_element"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:padding="3dp"
+                    android:text="Exercise" />-->
+                <ListView
+                    android:id="@+id/recent_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp"></ListView>
+
+
 
             </LinearLayout>
+
+
         </ScrollView>
 
 
@@ -54,7 +70,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/last_week_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp"></ListView>
+            </LinearLayout>
+
         </ScrollView>
 
         <TextView
@@ -74,6 +97,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ListView
+                    android:id="@+id/other_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp"></ListView>
             </LinearLayout>
         </ScrollView>
 
@@ -88,6 +115,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="30dp"
+        android:tint="@android:color/black"
+        android:src="@drawable/add"
+
         android:clickable="true"
      />
 
