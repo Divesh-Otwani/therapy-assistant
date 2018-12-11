@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.triggertrap.seekarc.SeekArc;
 
@@ -32,6 +33,7 @@ public class PercentageAnswerFragment extends AnswerFragment {
 
         View v = inflater.inflate(R.layout.percentage_answer,container,false);
 
+        final TextView textVal = v.findViewById(R.id.percentValue);
 
         SeekArc arc = v.findViewById(R.id.seekArc);
 
@@ -39,6 +41,7 @@ public class PercentageAnswerFragment extends AnswerFragment {
             @Override
             public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
                 currentAnswer = i;
+                textVal.setText(currentAnswer);
             }
 
             @Override
