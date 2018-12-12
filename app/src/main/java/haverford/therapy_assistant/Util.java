@@ -48,7 +48,7 @@ public class Util {
 
     private static Question[] util_arr_qs = {util_q1, util_q2, util_q3};
     public static Vector<Question> util_ques = new Vector(Arrays.asList(util_arr_qs));
-    public static Exercise util_exercise = new Exercise(0,"SomeExerciseNm", util_ques);
+    public static Exercise util_exercise = new Exercise(0,"Fake CBT Exercise", util_ques);
 
     /* Toolbar Utilities
     *

@@ -46,7 +46,6 @@ public class QuestionAnswer extends AppCompatActivity {
         //Log.d(TAG, cd.pullExercises().toString());
 
 
-
     }
 
     @Override
