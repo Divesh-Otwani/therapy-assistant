@@ -34,14 +34,14 @@ public class Util {
     public static Question util_q2 = new Question(
             1
             , QuestionType.ScaleOfTenAnswer
-            ,"Rate your anxiety right now."
+            ,"How would you rate the amount of fear you're experiencing?"
             , "Anxiety Rating.");
 
     public static Question util_q3 = new Question(
             2
             , QuestionType.PercentageAnswer
-            ,"How likely are you to panic?"
-            , "Panic Rating.");
+            ,"How in control do you feel?"
+            , "Control Rating.");
 
     private static Question[] util_arr_qs = {util_q1, util_q2, util_q3};
     public static Vector<Question> util_ques = new Vector(Arrays.asList(util_arr_qs));
