@@ -4,26 +4,24 @@
     android:id="@+id/exercise_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="100"
     android:orientation="vertical">
 
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/selectexercise_toolbar"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_weight="20"
         />
 
-    <TextView
-        android:id="@+id/question_answer"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:text="This Exercise"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/selectexercise_list"
         android:layout_width="match_parent"
-        android:layout_height="567dp"></ListView>
+        android:layout_height="match_parent"
+        android:layout_weight="80">
+
+    </ListView>
 
 </LinearLayout>

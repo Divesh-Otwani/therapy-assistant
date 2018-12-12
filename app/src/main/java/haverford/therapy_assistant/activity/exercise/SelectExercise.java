@@ -29,9 +29,11 @@ import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 
 public class SelectExercise extends AppCompatActivity{
-    private static final String TITLE="Select Exercise";
+
+    private static final String TITLE="Select An Exercise";
     private FirebaseDatabase database;
     private DatabaseReference ref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,13 @@ public class SelectExercise extends AppCompatActivity{
         Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
+
+
+
         // TODO: remove this code when time
         /*TextView v = this.findViewById(R.id.testTextView);
         v.setOnClickListener(Util.makeActStartListener(this, DoExercise.class));*/
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

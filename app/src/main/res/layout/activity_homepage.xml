@@ -23,34 +23,34 @@
 
     <TextView
         android:id="@+id/tv1"
-        android:layout_width="match_parent"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pointless_home"
-        android:text="Favorite Resources"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/cmunci"
+        android:gravity="center"
+        android:text="@string/home_quote"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="italic" />
 
-
-    <HorizontalScrollView
-        android:layout_below="@+id/tv1"
-        android:id="@+id/fav_resourcesview"
+    <Space
+        android:id="@+id/space1"
         android:layout_width="match_parent"
-        android:layout_height="60pt">
-
-        <LinearLayout
-            android:id="@+id/fav_resources"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
-    </HorizontalScrollView>
+        android:layout_below="@+id/tv1"
+        android:layout_height="20dp"/>
 
     <TextView
         android:id="@+id/tv2"
-        android:layout_below="@+id/fav_resourcesview"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Favorite Exercises"
-        android:textSize="30sp"
+        android:layout_below="@+id/space1"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Recent Exercises"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 
@@ -75,6 +75,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="30dp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:src="@drawable/add"
+        />
 
 </RelativeLayout>

@@ -91,7 +91,7 @@ public class LocalStorage {
             writeQuestionList(writer,e.getQuestions());
         }
         writer.endObject();
-        notifyObservers();
+
     }
 
     /**
@@ -104,7 +104,7 @@ public class LocalStorage {
         for(Question q : questions)
             writeQuestion(writer,q);
         writer.endArray();
-        notifyObservers();
+
     }
 
     /**
@@ -151,7 +151,7 @@ public class LocalStorage {
         }
 
         writer.endObject();
-        notifyObservers();
+
     }
 
     /**

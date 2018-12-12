@@ -16,14 +16,18 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.localstore.LocalStorage;
 
 public class DoExercise extends AppCompatActivity {
 
-    // The response android pager
+    // The android pager
     private DoExerciseAdapter mPageAdapter;
     private ViewPager mViewPager;
 
@@ -100,11 +104,13 @@ public class DoExercise extends AppCompatActivity {
     }
 
     private void saveExercise(){
-
+        LocalStorage l = new LocalStorage(this);
+        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        l.storeExercise(currDate, mExercise);
     }
 
     private void goToExercisesPage(){
-
+        this.startActivity(new Intent(this, Exercises.class));
     }
 
     @Override
@@ -118,9 +124,13 @@ public class DoExercise extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.do_exercise_back:
-                mPtr -= 1;
-                updateUI();
-                return true;
+                if (mPtr == 0){
+                    return true;
+                } else {
+                    mPtr -= 1;
+                    updateUI();
+                    return true;
+                }
             case R.id.do_exercise_forward_or_save:
                 if (atLastPage()){
                     saveAnswer();
