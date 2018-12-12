@@ -33,12 +33,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         ex = new Vector<>();
         ex = collectallexercise();
     }
-    @Override
-    public void registerDataSetObserver(final DataSetObserver dataSetObserver) {
-        localStorage.addObserver(dataSetObserver);
-        //mItems.addObserver(dataSetObserver);
 
-    }
     public static Date getWeekStartDate() {
         Calendar calendar = Calendar.getInstance();
         while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
@@ -75,13 +70,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
 
 
     }
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
 
-        localStorage.removeObserver(dataSetObserver);
-        //hm.remove(dataSetObserver);
-
-    }
     @Override
     public int getCount() {
         return ex.size();

@@ -70,20 +70,7 @@ public class ExcerciseListLastWeekAdapter extends BaseAdapter implements ListAda
 
 
     }
-    @Override
-    public void registerDataSetObserver(final DataSetObserver dataSetObserver) {
-        localStorage.addObserver(dataSetObserver);
-        //mItems.addObserver(dataSetObserver);
 
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-
-        localStorage.removeObserver(dataSetObserver);
-        //hm.remove(dataSetObserver);
-
-    }
     @Override
     public int getCount() {
         return ex.size();

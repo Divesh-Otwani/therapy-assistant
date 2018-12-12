@@ -92,7 +92,8 @@ public class SelectExercise extends AppCompatActivity{
                             uid = ((Long) unique.getValue()).intValue();
                         }else{
                             for(DataSnapshot u : unique.getChildren()){
-                                vq.add(hm.get(u.getValue()));
+                                //Log.d("SelectExerciseTAGgetvalue", hm.get(((Long) u.getValue()).intValue()).getName());
+                                vq.add(hm.get(((Long) u.getValue()).intValue()));
                             }
                         }
 

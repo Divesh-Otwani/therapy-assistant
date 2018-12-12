@@ -63,7 +63,7 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("selectexercisevalue", exercises);
+                bundle.putSerializable("exercise_arg", exercises.get(position));
                 Intent i = new Intent(context, DoExercise.class);
                 i.putExtras(bundle);
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ public class DoExercise extends AppCompatActivity {
     // The response android pager
     private DoExerciseAdapter mPageAdapter;
     private ViewPager mViewPager;
-
+    final String TAG = "DoExerciseTAG";
     // The state
     private int mLength;
     private int mPtr = 0;
@@ -46,6 +47,7 @@ public class DoExercise extends AppCompatActivity {
         // Get the Exercise in the intent.
         Intent creator = this.getIntent();
         mExercise = (Exercise) creator.getExtras().getSerializable("exercise_arg");
+        Log.d(TAG, "mExercise " + mExercise.getName() + " " + mExercise.getQuestions());
         mLength = mExercise.getQuestions().size();
         mQuestionText = (TextView) findViewById(R.id.do_exercise_question);
 
@@ -72,8 +74,12 @@ public class DoExercise extends AppCompatActivity {
     /*  Updating UI & Making Changes */
 
     private Question getCurrQuestion(){
+        Log.d(TAG, mExercise.getQuestions().toString());
+        Log.d(TAG, mExercise.getQuestions().get(mPtr).getPrompt());
+        Log.d(TAG, "mPtr " + mPtr);
         return mExercise.getQuestions().elementAt(mPtr);
     }
+
 
     private void updateUI(){
         Question newQ = getCurrQuestion();
