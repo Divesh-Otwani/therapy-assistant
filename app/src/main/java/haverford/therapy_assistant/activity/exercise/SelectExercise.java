@@ -1,17 +1,13 @@
 package haverford.therapy_assistant.activity.exercise;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +19,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
+import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.cloud.CloudData;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;

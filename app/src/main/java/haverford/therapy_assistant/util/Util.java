@@ -1,6 +1,5 @@
-package haverford.therapy_assistant;
+package haverford.therapy_assistant.util;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -12,17 +11,15 @@ import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
 
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Vector;
 
+import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.activity.exercise.Exercises;
 import haverford.therapy_assistant.activity.resource.Resources;
-import haverford.therapy_assistant.activity.exercise.SelectExercise;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
-import haverford.therapy_assistant.data.answer.TextAnswer;
 
 /**
  * A collection of top level android utilities to avoid repeating code.

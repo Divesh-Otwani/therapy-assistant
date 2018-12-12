@@ -3,7 +3,6 @@ package haverford.therapy_assistant.activity.exercise;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
+import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.data.Exercise;
-import haverford.therapy_assistant.data.Question;
-import haverford.therapy_assistant.data.QuestionType;
 
 public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
 

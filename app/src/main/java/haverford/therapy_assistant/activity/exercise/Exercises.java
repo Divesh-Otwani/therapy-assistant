@@ -1,37 +1,21 @@
 package haverford.therapy_assistant.activity.exercise;
 
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.time.LocalDate;
-import java.util.Vector;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.cloud.CloudData;
-import haverford.therapy_assistant.data.Exercise;
-import haverford.therapy_assistant.data.Question;
-import haverford.therapy_assistant.localstore.LocalStorage;
+import haverford.therapy_assistant.util.Util;
 
 public class Exercises extends AppCompatActivity {
     public static final String TITLE = "Exercises";

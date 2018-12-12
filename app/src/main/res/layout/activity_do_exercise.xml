@@ -11,19 +11,35 @@
     tools:context=".activity.exercise.DoExercise">
 
     <TextView
+        android:id="@+id/do_exercise_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:textSize="25sp"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/liberationserif"
+        android:background="#1e88e5"
+        android:text="TextView" />
+
+    <TextView
         android:id="@+id/do_exercise_question"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_weight="20"
+        android:layout_weight="10"
+        android:padding="10dp"
+        android:fontFamily="@font/liberationserif"
+        android:textSize="18sp"
         android:text="TextView" />
 
-    <android.support.v4.view.ViewPager
+    <haverford.therapy_assistant.util.NonSwipeViewPager
         android:id="@+id/do_exercise_response"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_weight="65">
-
-    </android.support.v4.view.ViewPager>
+        android:layout_weight="65"
+        android:padding="10dp"
+        android:background="@drawable/border">
+    </haverford.therapy_assistant.util.NonSwipeViewPager>
 
 
     <android.support.v7.widget.Toolbar
