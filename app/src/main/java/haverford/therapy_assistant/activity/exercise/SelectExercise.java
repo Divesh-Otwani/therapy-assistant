@@ -1,17 +1,13 @@
 package haverford.therapy_assistant.activity.exercise;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,25 +19,45 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
+import haverford.therapy_assistant.util.Util;
+import haverford.therapy_assistant.cloud.CloudData;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 
 public class SelectExercise extends AppCompatActivity{
-    private static final String TITLE="Select Exercise";
+
+    private static final String TITLE="Select An Exercise";
     private FirebaseDatabase database;
     private DatabaseReference ref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectexercise);
         Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
+
+        // Setup database
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
-        // TODO: remove this code when time
-        /*TextView v = this.findViewById(R.id.testTextView);
-        v.setOnClickListener(Util.makeActStartListener(this, DoExercise.class));*/
+        //makeListenerForDatabaseChanges();
+
+        // Setup list of exercises
+        ListView exercisesToChooseFrom = (ListView) findViewById(R.id.selectexercise_list);
+        CloudData cloudDatabase = new CloudData();
+        Vector<Exercise> possibleExercises = cloudDatabase.pullExercises();
+        SelectExerciseAdapter exerciseAdapter = new SelectExerciseAdapter(this, possibleExercises);
+        exercisesToChooseFrom.setAdapter(exerciseAdapter);
+
+    }
+
+
+
+    /* Comments by Divesh:
+    1) I don't think we want/need this; sorry if I said we did earlier!
+    2) It seems to add a null exercise to our list of exercises, which is a bug.
+    */
+    private void makeListenerForDatabaseChanges() {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,7 +113,7 @@ public class SelectExercise extends AppCompatActivity{
                             }
                         }
 
-                }
+                    }
                     ex.add(new Exercise(uid, name, vq));
 
                 }
@@ -126,25 +142,11 @@ public class SelectExercise extends AppCompatActivity{
 
             }
         });
-/*        final Context self = this;
-        TextView v = this.findViewById(R.id.testTextView);
-        v.setOnClickListener(new View.OnClickListener() {
-                                 @Override
-                                 public void onClick(View v) {
-                                     Intent i = new Intent(self, DoExercise.class);
-                                     Bundle b = new Bundle();
-                                     b.putSerializable("exercise_arg", Util.util_exercise);
-                                     i.putExtras(b);
-                                     startActivity(i);
-                                 }
-                             }
-        );*/
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         return Util.createOptionsMenu(this, menu);
     }
 

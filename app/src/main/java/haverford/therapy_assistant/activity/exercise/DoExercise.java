@@ -1,13 +1,17 @@
 package haverford.therapy_assistant.activity.exercise;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,16 +19,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import android.widget.ActionMenuView;
 import android.widget.TextView;
+
+import java.sql.Date;
+import java.util.Calendar;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.localstore.LocalStorage;
 
 public class DoExercise extends AppCompatActivity {
 
-    // The response android pager
+    // The android pager
     private DoExerciseAdapter mPageAdapter;
     private ViewPager mViewPager;
     final String TAG = "DoExerciseTAG";
@@ -35,8 +44,8 @@ public class DoExercise extends AppCompatActivity {
     private TextView mQuestionText;
 
 
-    /*PRECONDITIONS: non zero list of questions.*/
 
+    /*PRECONDITIONS: non zero list of questions.*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,8 @@ public class DoExercise extends AppCompatActivity {
         Log.d(TAG, "mExercise " + mExercise.getName() + " " + mExercise.getQuestions());
         mLength = mExercise.getQuestions().size();
         mQuestionText = (TextView) findViewById(R.id.do_exercise_question);
+        TextView title = (TextView) findViewById(R.id.do_exercise_title);
+        title.setText(mExercise.getName()); // TODO: set font size.
 
 
         // Show the toolbar with forward/save and back button.
@@ -89,12 +100,12 @@ public class DoExercise extends AppCompatActivity {
     }
 
 
-    /*  Setting up the bottom navigation menu.  */
-
     private void setupBottomNavigation(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.do_exercise_toolbar);
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setPopupTheme(R.style.AppTheme);
+        toolbar.setBackgroundColor(Color.rgb(30, 136, 229));
+        setupEvenlyDistributedToolbar(toolbar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().show();
@@ -106,11 +117,13 @@ public class DoExercise extends AppCompatActivity {
     }
 
     private void saveExercise(){
-
+        LocalStorage l = new LocalStorage(this);
+        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        l.storeExercise(currDate, mExercise);
     }
 
     private void goToExercisesPage(){
-
+        this.startActivity(new Intent(this, Exercises.class));
     }
 
     @Override
@@ -124,9 +137,13 @@ public class DoExercise extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.do_exercise_back:
-                mPtr -= 1;
-                updateUI();
-                return true;
+                if (mPtr == 0){
+                    return true;
+                } else {
+                    mPtr -= 1;
+                    updateUI();
+                    return true;
+                }
             case R.id.do_exercise_forward_or_save:
                 if (atLastPage()){
                     saveAnswer();
@@ -145,10 +162,66 @@ public class DoExercise extends AppCompatActivity {
 
 
     /* Util */
-
     private boolean atLastPage(){
         return mPtr + 1 == mLength;
     }
+
+
+    /*
+     * Evenly distribute toolbar items. Source:
+     * https://stackoverflow.com/questions/26489079/evenly-spaced-menu-items-on-toolbar
+     */
+    public void setupEvenlyDistributedToolbar(Toolbar toolbar){
+        // Use Display metrics to get Screen Dimensions
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+
+        // Inflate your menu
+        toolbar.inflateMenu(R.menu.menu_do_exercise);
+
+        // Add 10 spacing on either side of the toolbar
+        toolbar.setContentInsetsAbsolute(10, 10);
+
+        // Get the ChildCount of your Toolbar, this should only be 1
+        int childCount = toolbar.getChildCount();
+        // Get the Screen Width in pixels
+        int screenWidth = metrics.widthPixels;
+
+        // Create the Toolbar Params based on the screenWidth
+        Toolbar.LayoutParams toolbarParams = new
+                Toolbar.LayoutParams(screenWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // Loop through the child Items
+        for(int i = 0; i < childCount; i++){
+            // Get the item at the current index
+            View childView = toolbar.getChildAt(i);
+            // If its a ViewGroup
+            if(childView instanceof ViewGroup){
+                // Set its layout params
+                childView.setLayoutParams(toolbarParams);
+                // Get the child count of this view group, and compute the item
+                // widths based on this count & screen size
+                int innerChildCount = ((ViewGroup) childView).getChildCount();
+                int itemWidth  = (screenWidth / innerChildCount);
+                // Create layout params for the ActionMenuView
+                ActionMenuView.LayoutParams params = new
+                        ActionMenuView.LayoutParams(itemWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
+                // Loop through the children
+                for(int j = 0; j < innerChildCount; j++){
+                    View grandChild = ((ViewGroup) childView).getChildAt(j);
+                    if(grandChild instanceof ActionMenuItemView){
+                        // set the layout parameters on each View
+                        grandChild.setLayoutParams(params);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
 
 }
 

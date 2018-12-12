@@ -26,7 +26,8 @@ public class CloudData {
     private String TAG = "ViewDatabase";
     private FirebaseDatabase database;
     private DatabaseReference ref;
-    private int ii;
+
+
     public CloudData() {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
@@ -41,11 +42,9 @@ public class CloudData {
 
             }
         });*/
-        Vector<Exercise> ve = new Vector<Exercise>();
-        pullExercises(ve);
-        Log.d(TAG, "in constructor pullexercise" + ve);
-
-
+        //Vector<Exercise> ve = new Vector<Exercise>();
+        //pullExercises();
+        //Log.d(TAG, "in constructor pullexercise" + ve);
     }
 
 
@@ -59,10 +58,12 @@ public class CloudData {
             System.out.print(unique.getValue());
         }}
     }
+
+
     // Implement this function
     // Have a few test exercises in there for now.
-    public void pullExercises(final Vector<Exercise> ve){
-        //final Vector<Exercise> ve = new Vector<Exercise>();
+    public Vector<Exercise> pullExercises(){
+        final Vector<Exercise> ve = new Vector<Exercise>();
         final HashMap<Integer, Question> hm = new HashMap<>();
         final int[] id2 = new int[1];
 
@@ -116,9 +117,9 @@ public class CloudData {
                             id = (int)unique.getValue();
                         } else {
                             for (DataSnapshot i : unique.getChildren()) {
-                                vq.add(hm.get(i.getValue()));
-
-
+                                if (i.getValue() != null) {
+                                    vq.add(hm.get(i.getValue()));
+                                }
                             }
                         }
                         ve.add(new Exercise(id, name, vq));
@@ -136,7 +137,7 @@ public class CloudData {
 
         });
         Log.d(TAG, "What ve is when trying to return " + ve.toString());
-        //return ve;
+        return ve;
     }
 
 
@@ -168,8 +169,6 @@ public class CloudData {
                     }
                     qu.add(new Resource(name, UID, title, Description, ResType));
                 }
-
-
 
             }
 

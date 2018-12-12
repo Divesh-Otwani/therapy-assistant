@@ -1,23 +1,19 @@
 package haverford.therapy_assistant.activity.resource;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.activity.exercise.Exercises;
+import haverford.therapy_assistant.util.Util;
 
 public class CBTResources extends AppCompatActivity {
 

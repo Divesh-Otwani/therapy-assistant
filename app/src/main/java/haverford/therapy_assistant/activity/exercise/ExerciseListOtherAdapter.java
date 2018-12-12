@@ -59,7 +59,6 @@ public class ExerciseListOtherAdapter extends BaseAdapter implements ListAdapter
     }
 
 
-
     @Override
     public int getCount() {
         return ex.size();

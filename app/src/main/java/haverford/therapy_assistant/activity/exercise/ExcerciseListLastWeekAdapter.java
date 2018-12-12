@@ -70,7 +70,6 @@ public class ExcerciseListLastWeekAdapter extends BaseAdapter implements ListAda
 
 
     }
-
     @Override
     public int getCount() {
         return ex.size();

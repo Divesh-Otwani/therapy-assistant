@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.answer.Answer;
@@ -31,12 +32,15 @@ public class ScaleOfTenAnswerFragment extends AnswerFragment {
 
         View v = inflater.inflate(R.layout.scale_of_ten_answer,container,false);
 
+
+        final TextView tenValue = v.findViewById(R.id.ofTenValue);
         SeekBar seekBar = v.findViewById(R.id.seekBar);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentAnswer = progress;
+                tenValue.setText(currentAnswer);
             }
 
             @Override

@@ -1,7 +1,7 @@
-package haverford.therapy_assistant;
+package haverford.therapy_assistant.util;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,17 +11,15 @@ import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
 
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Vector;
 
+import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.activity.exercise.Exercises;
 import haverford.therapy_assistant.activity.resource.Resources;
-import haverford.therapy_assistant.activity.exercise.SelectExercise;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
-import haverford.therapy_assistant.data.answer.TextAnswer;
 
 /**
  * A collection of top level android utilities to avoid repeating code.
@@ -36,11 +34,18 @@ public class Util {
     public static Question util_q2 = new Question(
             1
             , QuestionType.ScaleOfTenAnswer
-            ,"Rate your anxiety right now."
+            ,"How would you rate the amount of fear you're experiencing?"
             , "Anxiety Rating.");
-    private static Question[] util_arr_qs = {util_q1, util_q2};
+
+    public static Question util_q3 = new Question(
+            2
+            , QuestionType.PercentageAnswer
+            ,"How in control do you feel?"
+            , "Control Rating.");
+
+    private static Question[] util_arr_qs = {util_q1, util_q2, util_q3};
     public static Vector<Question> util_ques = new Vector(Arrays.asList(util_arr_qs));
-    public static Exercise util_exercise = new Exercise(0,"SomeExerciseNm", util_ques);
+    public static Exercise util_exercise = new Exercise(0,"Fake CBT Exercise", util_ques);
 
     /* Toolbar Utilities
     *
@@ -65,6 +70,8 @@ public class Util {
         bar.setPopupTheme(R.style.AppTheme);
         bar.setVisibility(View.VISIBLE);
         bar.setTitle(title);
+        bar.setBackgroundColor(Color.rgb(30, 136, 229));
+        bar.setTitleTextColor(Color.WHITE);
         act.setSupportActionBar(bar);
     }
 

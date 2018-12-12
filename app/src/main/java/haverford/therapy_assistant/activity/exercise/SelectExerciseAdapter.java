@@ -3,7 +3,6 @@ package haverford.therapy_assistant.activity.exercise;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
+import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.data.Exercise;
-import haverford.therapy_assistant.data.Question;
-import haverford.therapy_assistant.data.QuestionType;
 
 public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
 
@@ -36,7 +30,9 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
     }
     @Override
     public int getCount() {
-        return exercises.size();
+        // TODO: Uncomment
+        //return exercises.size();
+        return 3;
     }
 
     @Override
@@ -69,11 +65,37 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
 
                 context.startActivity(i);
 
+        // TODO: Uncomment below.
+        /*if (position >= 0 && position < 3 ){
+            final Context context = parent.getContext();
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.activity_selectexercise_list, parent, false);
             }
-        });
+            final TextView tv = (TextView) view.findViewById(R.id.exercise_name);
+            // TODO: Uncomment
+            //tv.setText(exercises.get(position).getName());
+            tv.setText(Util.util_exercise.getName());
+            tv.setOnClickListener(new View.OnClickListener(
 
-    // have to do all of this in the activity and make the list of exercise go into this adapter
+            ) {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    // TODO: make a constants file for "exercise_arg" and other constants.
+                    Exercise exercise = exercises.get(position);
+                    // TODO: Uncomment below.
+                    bundle.putSerializable("exercise_arg", Util.util_exercise );
+                    Intent i = new Intent(context, DoExercise.class);
+                    i.putExtras(bundle);
+                    context.startActivity(i);
 
-        return view;
+                }
+            });
+
+            return view;
+        } else {
+            return null;*/
+        }
     }
+return view;
 }
