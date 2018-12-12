@@ -1,23 +1,14 @@
 package haverford.therapy_assistant;
 
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.support.v7.widget.Toolbar;
-import android.widget.LinearLayout;
 
 
-import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.activity.exercise.Exercises;
+import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.activity.exercise.SelectExercise;
-import haverford.therapy_assistant.activity.resource.Resources;
 
 public class Homepage extends AppCompatActivity {
     private static final String TITLE="Therapy Assistant";

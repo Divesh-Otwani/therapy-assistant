@@ -56,7 +56,7 @@ public class Question implements Serializable {
     }
 
     public Answer getAnswerName(){
-        if(isAnswered()) return mAnswer.get();
+        if(isAnswered()) return mAnswer.getValue().get();
         else return null;
     }
 

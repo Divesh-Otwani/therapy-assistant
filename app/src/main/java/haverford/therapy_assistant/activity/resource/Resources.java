@@ -1,16 +1,13 @@
 package haverford.therapy_assistant.activity.resource;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
-import haverford.therapy_assistant.activity.exercise.Exercises;
+import haverford.therapy_assistant.util.Util;
 
 
 /* Zach should flush this part out. Make this activity pretty and make

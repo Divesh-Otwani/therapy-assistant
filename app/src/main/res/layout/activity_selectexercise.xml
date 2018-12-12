@@ -4,20 +4,24 @@
     android:id="@+id/exercise_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="100"
     android:orientation="vertical">
 
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/selectexercise_toolbar"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_weight="20"
         />
 
-    <TextView
-        android:id="@+id/testTextView"
+
+    <ListView
+        android:id="@+id/selectexercise_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Some Exercise Item"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:layout_weight="80">
+
+    </ListView>
 
 </LinearLayout>

@@ -6,16 +6,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
-import haverford.therapy_assistant.Util;
+import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.data.Question;
 
 public class QuestionAnswer extends AppCompatActivity {
@@ -44,7 +41,6 @@ public class QuestionAnswer extends AppCompatActivity {
             Log.d(TAG, "After exercise");
         }*/
         //Log.d(TAG, cd.pullExercises().toString());
-
 
 
     }
