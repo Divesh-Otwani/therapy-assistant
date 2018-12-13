@@ -40,7 +40,8 @@ public class ScaleOfTenAnswerFragment extends AnswerFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentAnswer = progress;
-                tenValue.setText(currentAnswer);
+                // TODO: Fix this.
+                tenValue.setText("" + currentAnswer);
             }
 
             @Override

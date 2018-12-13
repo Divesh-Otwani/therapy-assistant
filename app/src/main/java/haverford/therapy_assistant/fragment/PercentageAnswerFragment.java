@@ -41,7 +41,8 @@ public class PercentageAnswerFragment extends AnswerFragment {
             @Override
             public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
                 currentAnswer = i;
-                textVal.setText(currentAnswer);
+                // TODO: Fix this:
+                textVal.setText("" + currentAnswer);
             }
 
             @Override

@@ -40,24 +40,12 @@ public class SelectExercise extends AppCompatActivity{
         // Setup database
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
-        //makeListenerForDatabaseChanges();
-
-        // Setup list of exercises
-        ListView exercisesToChooseFrom = (ListView) findViewById(R.id.selectexercise_list);
-        CloudData cloudDatabase = new CloudData();
-        Vector<Exercise> possibleExercises = cloudDatabase.pullExercises();
-        SelectExerciseAdapter exerciseAdapter = new SelectExerciseAdapter(this, possibleExercises);
-        exercisesToChooseFrom.setAdapter(exerciseAdapter);
-
+        asyncSetupListviewAdapter();
     }
 
 
 
-    /* Comments by Divesh:
-    1) I don't think we want/need this; sorry if I said we did earlier!
-    2) It seems to add a null exercise to our list of exercises, which is a bug.
-    */
-    private void makeListenerForDatabaseChanges() {
+    private void asyncSetupListviewAdapter() {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -120,20 +108,6 @@ public class SelectExercise extends AppCompatActivity{
                 ListView lv = (ListView) findViewById(R.id.selectexercise_list);
                 ListAdapter la = new SelectExerciseAdapter(SelectExercise.this, ex);
                 lv.setAdapter(la);
-
-                /*
-                Exercise
-                mUID = id;
-        mName = name;
-        mQuestions = questions;
-                 */
-                /*
-                mUID = uid;
-        mQType = qtype;
-	    mPrompt = prompt;
-	    mName = name;
-                 */
-
 
             }
 
