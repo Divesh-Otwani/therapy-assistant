@@ -32,7 +32,7 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
     public int getCount() {
         // TODO: Uncomment
         //return exercises.size();
-        return 3;
+        return exercises.size();
     }
 
     @Override
@@ -65,7 +65,14 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
 
                 context.startActivity(i);
 
-        // TODO: Uncomment below.
+
+        }
+    });
+    return view;
+
+    }}
+
+// TODO: Uncomment below.
         /*if (position >= 0 && position < 3 ){
             final Context context = parent.getContext();
             if (view == null) {
@@ -95,7 +102,3 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
             return view;
         } else {
             return null;*/
-        }
-    }
-return view;
-}

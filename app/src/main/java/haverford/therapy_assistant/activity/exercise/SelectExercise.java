@@ -44,10 +44,12 @@ public class SelectExercise extends AppCompatActivity{
 
         // Setup list of exercises
         ListView exercisesToChooseFrom = (ListView) findViewById(R.id.selectexercise_list);
-        CloudData cloudDatabase = new CloudData();
-        Vector<Exercise> possibleExercises = cloudDatabase.pullExercises();
-        SelectExerciseAdapter exerciseAdapter = new SelectExerciseAdapter(this, possibleExercises);
-        exercisesToChooseFrom.setAdapter(exerciseAdapter);
+        //CloudData cloudDatabase = new CloudData();
+        //Vector<Exercise> possibleExercises = cloudDatabase.pullExercises();
+
+        //SelectExerciseAdapter exerciseAdapter = new SelectExerciseAdapter(this, possibleExercises);
+        //exercisesToChooseFrom.setAdapter(exerciseAdapter);
+        makeListenerForDatabaseChanges();
 
     }
 
