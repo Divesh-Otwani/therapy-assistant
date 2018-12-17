@@ -28,11 +28,13 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
     public SelectExerciseAdapter(Context context, Vector<Exercise> ex){
         exercises = ex;
     }
+
+
     @Override
     public int getCount() {
         // TODO: Uncomment
-        //return exercises.size();
         return exercises.size();
+        //return 3;
     }
 
     @Override
@@ -53,9 +55,7 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
         }
         final TextView tv = (TextView) view.findViewById(R.id.exercise_name);
         tv.setText(exercises.get(position).getName());
-        view.setOnClickListener(new View.OnClickListener(
-
-        ) {
+        tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -64,6 +64,7 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
                 i.putExtras(bundle);
 
                 context.startActivity(i);
+            }});
 
 
         }
@@ -102,3 +103,6 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
             return view;
         } else {
             return null;*/
+    return view;
+    }
+}
