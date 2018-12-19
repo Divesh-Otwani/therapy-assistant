@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.sql.Date;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +41,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         ex = collectallexercise();
     }
 
+
     public static Date getWeekStartDate() {
         Calendar calendar = Calendar.getInstance();
         while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
@@ -61,6 +63,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         return !(testDate.before(getWeekStartDate()) || testDate.after(getWeekEndDate()));
     }
 
+
     private Vector<Exercise> collectallexercise(){
         Vector<Exercise> exe = new Vector<>();
         Iterator<Map.Entry<Date, Vector<Exercise>>> entries = queryExercises.entrySet().iterator();
@@ -71,7 +74,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
                 exe.add(ex);
             }
         }
-        exe.sort(new CompareExercisePairs());
+        Collections.sort(exe);
         return exe;
     }
 
@@ -105,7 +108,6 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         dateText.setText(e.getDate().toString());
 
         view.setOnClickListener(new View.OnClickListener(
-
         ) {
             @Override
             public void onClick(View v) {
@@ -120,9 +122,6 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
 
                     context.startActivity(i);
                 }
-
-
-
             }
         });
         return view;

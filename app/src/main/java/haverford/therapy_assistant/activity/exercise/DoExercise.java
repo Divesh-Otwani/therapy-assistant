@@ -125,32 +125,20 @@ public class DoExercise extends AppCompatActivity {
         return null; // Crash!
     }
 
-    private void saveAnswer(){
+    private void saveAnswer() {
         AnswerFragment currFragment = (AnswerFragment) mPageAdapter.getItem(mPtr);
-
         Answer ans = currFragment.getAnswer();
-        Log.d("Tag", "Answer: " + ans.toString());
-
-        Log.d("Tag", "BEFORE ...");
-        Log.d("Tag", mExercise.getQuestions().get(mPtr).toString());
         mExercise.getQuestions().get(mPtr).answerQuestion(ans); // This mutates state right?
-        Log.d("Tag","AFTER ...");
-        Log.d("Tag", mExercise.getQuestions().get(mPtr).toString());
-        Log.d("Tag","\n \n Done ... \n \n");
 
-        //EditText ed = (EditText) findViewById(R.id.editTextAnswer);
-        //String eds = ed.getText().toString();
-        //mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).setmAnswer(ed.getText().toString());
-                //getCurrFragment(getCurrQuestion().getQType()).getAnswer();
-        // Log.d("DoExercise saveAnswer()", ed.getText().toString());
-        //getCurrQuestion().answerQuestion(ans);
-        //getCurrQuestion().answerQuestion(selectFragment(getCurrQuestion().getQType(), eds));
     }
 
     private void saveExercise(){
         LocalStorage l = new LocalStorage(this);
-        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        l.storeExercise(currDate, mExercise);
+        // TODO: Note for Brian.
+        // TODO: If you can, we want to make this work with more specific time.
+        l.storeExercise(new Date((new java.util.Date()).getTime()), mExercise);
+        // TODO: Replace the line above with this line below.
+        // l.storeExercise(new java.util.Date(), mExercise);
     }
 
     private void goToExercisesPage(){

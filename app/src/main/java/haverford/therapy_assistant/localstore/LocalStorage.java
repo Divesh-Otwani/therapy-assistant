@@ -1,7 +1,5 @@
 package haverford.therapy_assistant.localstore;
 
-// Brian should work primarily in this package.
-
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.util.JsonWriter;
