@@ -31,6 +31,7 @@ import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.MultipleChoiceAnswer;
 import haverford.therapy_assistant.data.answer.PercentageAnswer;
 import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
 import haverford.therapy_assistant.data.answer.TextAnswer;
@@ -122,6 +123,8 @@ public class DoExercise extends AppCompatActivity {
 
     private Answer selectFragment(QuestionType ty, String cs){
         switch (ty){
+            case MultipleChoiceAnswer:
+                return new MultipleChoiceAnswer();
             case PercentageAnswer:
                 return new PercentageAnswer(Integer.valueOf(cs));
             case TextAnswer:

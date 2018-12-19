@@ -8,6 +8,7 @@ import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
 import haverford.therapy_assistant.fragment.AnswerFragment;
+import haverford.therapy_assistant.fragment.MultipleChoiceAnswerFragment;
 import haverford.therapy_assistant.fragment.PercentageAnswerFragment;
 import haverford.therapy_assistant.fragment.ScaleOfTenAnswerFragment;
 import haverford.therapy_assistant.fragment.TextAnswerFragment;
@@ -28,6 +29,8 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
 
     private AnswerFragment selectFragment(QuestionType ty){
         switch (ty){
+            case MultipleChoiceAnswer:
+                return new MultipleChoiceAnswerFragment();
             case PercentageAnswer:
                 return new PercentageAnswerFragment();
             case TextAnswer:
