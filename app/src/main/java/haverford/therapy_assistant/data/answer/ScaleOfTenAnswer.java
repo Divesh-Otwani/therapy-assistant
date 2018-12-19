@@ -10,7 +10,7 @@ import haverford.therapy_assistant.data.QuestionType;
 
 public class ScaleOfTenAnswer extends Answer implements Serializable {
 
-    private Integer mAnswer;
+    private Integer mAnswer = 5;
 
     public ScaleOfTenAnswer(int answer) {
         mAnswer = answer;

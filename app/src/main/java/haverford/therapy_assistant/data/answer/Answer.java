@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import haverford.therapy_assistant.data.QuestionType;
 
+// Note: All answers should have a default value at the start.
 public abstract class Answer implements Serializable {
     private String mAnswer;
     public abstract QuestionType getQuestionType();
@@ -24,10 +25,6 @@ public abstract class Answer implements Serializable {
 
     public abstract Object getValue();
 
-    public String toString(){
-        try {
-            return toJSON().toString();
-        }
-        catch (JSONException e){e.printStackTrace(); return "NULL";}
-    }
+    public abstract String toString();
+
 }

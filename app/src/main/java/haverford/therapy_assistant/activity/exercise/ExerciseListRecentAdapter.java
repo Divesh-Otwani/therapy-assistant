@@ -11,11 +11,16 @@ import android.widget.ListAdapter;
 import android.content.Context;
 import android.widget.TextView;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
@@ -31,14 +36,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
 
     public ExerciseListRecentAdapter(Context context){
         localStorage = new LocalStorage(context);
-        //queryExercises = new HashMap<Date,Vector<Exercise>>();
-        /*Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
-        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        Vector<Question> qu = new Vector<>();
-        localStorage.storeExercise(currDate, new Exercise(100, "Exercise", qu));*/
         queryExercises = localStorage.queryExercises();
-
         ex = collectallexercise();
     }
 
@@ -65,19 +63,18 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
 
     private Vector<Exercise> collectallexercise(){
         Vector<Exercise> exe = new Vector<>();
-        Iterator it = queryExercises.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            Date d = (Date)pair.getKey();
-            if(isWithinRange((Date)pair.getKey())){
-                exe.addAll(queryExercises.get(d));
+        Iterator<Map.Entry<Date, Vector<Exercise>>> entries = queryExercises.entrySet().iterator();
+        while (entries.hasNext()){
+            Map.Entry<Date, Vector<Exercise>> pair = entries.next();
+            for (Exercise ex : pair.getValue()){
+                ex.setDate(pair.getKey());
+                exe.add(ex);
             }
-
         }
+        exe.sort(new CompareExercisePairs());
         return exe;
-
-
     }
+
 
     @Override
     public int getCount() {
@@ -101,8 +98,11 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.activity_exercise_list, parent, false);
         }
-        TextView name = (TextView) view.findViewById(R.id.exercise);
-        name.setText(e.getName());
+
+        TextView dateText = (TextView) view.findViewById(R.id.exercise_date);
+        TextView nameText = (TextView) view.findViewById(R.id.exercise_name);
+        nameText.setText(e.getName());
+        dateText.setText(e.getDate().toString());
 
         view.setOnClickListener(new View.OnClickListener(
 

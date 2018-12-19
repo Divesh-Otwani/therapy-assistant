@@ -35,10 +35,8 @@ public class Question implements Serializable {
      * @param ans
      * @return True if answer is the right type.
      */
-    public boolean answerQuestion(Answer ans){
-        if(ans==null) return false;
+    public void answerQuestion(Answer ans){
         mAnswer = new Just(ans);
-        return mAnswer.getValue().isPresent();
     }
 
     public boolean isAnswered(){return mAnswer.getValue().isPresent();}

@@ -9,7 +9,7 @@ import haverford.therapy_assistant.data.QuestionType;
 
 public class PercentageAnswer extends Answer implements Serializable {
 
-    private Integer mPercent;
+    private Integer mPercent = 0;
 
     public PercentageAnswer(int percent) {
         mPercent = percent;

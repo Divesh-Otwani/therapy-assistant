@@ -1,11 +1,13 @@
 package haverford.therapy_assistant.data;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
 public class Exercise implements Serializable {
+    private Date mDate;
     private int mUID;
     private String mName;
     private Vector<Question> mQuestions;
@@ -23,6 +25,8 @@ public class Exercise implements Serializable {
         return mQuestions;
     }
 
+    public Date getDate() {return mDate;}
+    public void setDate(Date date) {mDate = date;}
     public String toString(){
         return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"questions\": "+mQuestions.toString()+"\n}";
     }

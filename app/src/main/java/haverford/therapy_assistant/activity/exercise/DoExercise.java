@@ -63,7 +63,7 @@ public class DoExercise extends AppCompatActivity {
         // Set the layout
         setContentView(R.layout.activity_do_exercise);
 
-        // Get the Exercise in the intent.
+        // Get the Exercise in the intent. Set title.
         Intent creator = this.getIntent();
         mExercise = (Exercise) creator.getExtras().getSerializable("exercise_arg");
         Log.d(TAG, "mExercise " + mExercise.getName() + " " + mExercise.getQuestions());
@@ -72,23 +72,16 @@ public class DoExercise extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.do_exercise_title);
         title.setText(mExercise.getName()); // TODO: set font size.
 
-
         // Show the toolbar with forward/save and back button.
         setupBottomNavigation();
 
+        // Create the adapter that will return a fragment for each
+        // question in the exercise. Then attach this adapter.
         mPageAdapter = new DoExerciseAdapter(getSupportFragmentManager(), mExercise);
         mViewPager = (ViewPager) findViewById(R.id.do_exercise_response);
         mViewPager.setAdapter(mPageAdapter);
 
         updateUI();
-
-
-
-        // Create the adapter that will return a fragment for each
-        // question in the exercise. Then attach this adapter.
-
-
-
     }
 
 
@@ -136,13 +129,24 @@ public class DoExercise extends AppCompatActivity {
     }
 
     private void saveAnswer(){
-        EditText ed = (EditText) findViewById(R.id.editTextAnswer);
-        String eds = ed.getText().toString();
-//        mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).setmAnswer(ed.getText().toString());
-        Answer ans = mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).getAnswer();
+        AnswerFragment currFragment = (AnswerFragment) mPageAdapter.getItem(mPtr);
 
-        Log.d("DoExercise saveAnswer()", ed.getText().toString());
-        getCurrQuestion().answerQuestion(ans);
+        Answer ans = currFragment.getAnswer();
+        Log.d("Tag", "Answer: " + ans.toString());
+
+        Log.d("Tag", "BEFORE ...");
+        Log.d("Tag", mExercise.getQuestions().get(mPtr).toString());
+        mExercise.getQuestions().get(mPtr).answerQuestion(ans); // This mutates state right?
+        Log.d("Tag","AFTER ...");
+        Log.d("Tag", mExercise.getQuestions().get(mPtr).toString());
+        Log.d("Tag","\n \n Done ... \n \n");
+
+        //EditText ed = (EditText) findViewById(R.id.editTextAnswer);
+        //String eds = ed.getText().toString();
+        //mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).setmAnswer(ed.getText().toString());
+                //getCurrFragment(getCurrQuestion().getQType()).getAnswer();
+        // Log.d("DoExercise saveAnswer()", ed.getText().toString());
+        //getCurrQuestion().answerQuestion(ans);
         //getCurrQuestion().answerQuestion(selectFragment(getCurrQuestion().getQType(), eds));
     }
 
@@ -248,11 +252,6 @@ public class DoExercise extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
 }
 
 

@@ -18,7 +18,7 @@ public class MultipleChoiceAnswer extends Answer implements Serializable {
     public MultipleChoiceAnswer(String[] prompts) {
         mPrompts = prompts;
         length = mPrompts.length;
-        mResponse = null;
+        mResponse = "No option chosen!";
     }
     public MultipleChoiceAnswer() {
     }

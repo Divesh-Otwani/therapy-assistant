@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.Vector;
+
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
@@ -16,11 +18,16 @@ import haverford.therapy_assistant.fragment.TextAnswerFragment;
 public class DoExerciseAdapter extends FragmentPagerAdapter {
 
     private Exercise mExercise;
+    private Vector<AnswerFragment> mFrags = new Vector();
 
 
     public DoExerciseAdapter(FragmentManager fm, Exercise exercise) {
         super(fm);
         mExercise = exercise;
+        int numQuestions = exercise.getQuestions().size();
+        for (int i = 0; i< numQuestions; ++i){
+            mFrags.add(null);
+        }
     }
 
     private QuestionType getCurrQuesType(int position){
@@ -41,15 +48,17 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
         return null; // Crash!
     }
 
-    public AnswerFragment getCurrFragment(QuestionType ty){
-        //return new TextAnswerFragment(); // For now.
-        return selectFragment(ty);
-    }
-
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
-        return selectFragment(getCurrQuesType(position));
+        AnswerFragment curr = mFrags.get(position);
+        if (curr != null){
+            return curr;
+        } else {
+            AnswerFragment newFragment = selectFragment(getCurrQuesType(position));
+            mFrags.setElementAt(newFragment, position);
+            return newFragment;
+        }
     }
 
     @Override
