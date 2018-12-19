@@ -118,6 +118,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("recent_list_arg", e.getQuestions());
                     Intent i = new Intent(context, QuestionAnswer.class);
+                    //i.putExtra("recent_list_arg", e.getQuestions());
                     i.putExtras(bundle);
 
                     context.startActivity(i);

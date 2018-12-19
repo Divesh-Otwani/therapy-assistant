@@ -27,6 +27,9 @@ public class QuestionAnswer extends AppCompatActivity {
 
         // Get intent extras: list of questions,
         Intent creator = this.getIntent();
+        //Vector<Question> mQuestions = (Vector<Question>) creator.getSerializableExtra("recent_list_arg");
+        //Vector<Question> mQuestions = (Vector<Question>) creator.getExtras().getSerializable("recent_list_arg");
+        //Intent i = getIntent();
         ArrayList<Question> mQuestions = (ArrayList<Question>) creator.getExtras().getSerializable("recent_list_arg");
 
         // Setup the list view.
