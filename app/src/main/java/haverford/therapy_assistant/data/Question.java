@@ -1,5 +1,7 @@
 package haverford.therapy_assistant.data;
 
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

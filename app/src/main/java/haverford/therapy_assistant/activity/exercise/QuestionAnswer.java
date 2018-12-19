@@ -30,10 +30,11 @@ public class QuestionAnswer extends AppCompatActivity {
         doExercise.setSize(FloatingActionButton.SIZE_AUTO);
         doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));*/
         Intent creator = this.getIntent();
+        //Vector<Question> mQuestions = (Vector<Question>) creator.getSerializableExtra("recent_list_arg");
         Vector<Question> mQuestions = (Vector<Question>) creator.getExtras().getSerializable("recent_list_arg");
         Intent i = getIntent();
         ListView lv = (ListView) findViewById(R.id.questionanswer_list);
-        ListAdapter ad = new QuestionAnswerAdapter(this, (Vector<Question>)i.getSerializableExtra("questions"));
+        ListAdapter ad = new QuestionAnswerAdapter(this, mQuestions);
         lv.setAdapter(ad);
         //CloudData cd = new CloudData();
 

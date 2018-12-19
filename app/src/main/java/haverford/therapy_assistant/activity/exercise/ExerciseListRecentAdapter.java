@@ -31,9 +31,9 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
     public ExerciseListRecentAdapter(Context context){
         localStorage = new LocalStorage(context);
         //queryExercises = new HashMap<Date,Vector<Exercise>>();
-        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        /*Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Vector<Question> qu = new Vector<>();
-        localStorage.storeExercise(currDate, new Exercise(100, "Exercise", qu));
+        localStorage.storeExercise(currDate, new Exercise(100, "Exercise", qu));*/
         queryExercises = localStorage.queryExercises();
         //ex = new Vector<>();
         ex = collectallexercise();
@@ -113,6 +113,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("recent_list_arg", e.getQuestions());
                     Intent i = new Intent(context, QuestionAnswer.class);
+                    //i.putExtra("recent_list_arg", e.getQuestions());
                     i.putExtras(bundle);
 
                     context.startActivity(i);
