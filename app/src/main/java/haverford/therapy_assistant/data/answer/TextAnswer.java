@@ -10,7 +10,7 @@ import haverford.therapy_assistant.data.answer.Answer;
 
 public class TextAnswer extends Answer implements Serializable {
 
-    private String mAnswer;
+    private String mAnswer = "";
 
     public TextAnswer(String ans) {
         mAnswer = ans;
@@ -38,7 +38,7 @@ public class TextAnswer extends Answer implements Serializable {
 
     @Override
     public String toString(){
-        return ("Response:\n" + mAnswer);
+        return ("Response: " + mAnswer);
     }
 
 }
