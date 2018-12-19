@@ -1,5 +1,7 @@
 package haverford.therapy_assistant.data.answer;
 
+import android.util.JsonWriter;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,8 +19,9 @@ public class MultipleChoiceAnswer extends Answer{
         mResponse = null;
     }
 
-    public void setResponse(String response) {
+    public Answer setResponse(String response) {
         mResponse = response;
+        return this;
     }
 
     @Override
@@ -26,10 +29,45 @@ public class MultipleChoiceAnswer extends Answer{
         return QuestionType.MultipleChoiceAnswer;
     }
 
+    @Override
+    public JSONObject toJSON() throws  JSONException{
+        String jsonStart = "{";
+        String jsonTemplate = "\n\t\"value";
+        String jsonTemp2 = "\": ";
+
+        String json = jsonStart;
+
+
+        for(int i = 0; i < length; i++) {
+            json+= jsonTemplate+i+jsonTemp2+"\""+mPrompts[i]+"\",";
+        }
+        json+= "\n\t\"response\": \""+(mResponse==null? JSONObject.NULL : mResponse)+"\"\n}";
+
+        return new JSONObject(json);
+    }
 
     @Override
     public Answer fromJSON(JSONObject obj) throws JSONException {
-        return null;
+        String[] prompts;
+        String response;
+        int i =0;
+        while(obj.optString("value"+i,null)!=null) {
+           i++;
+        }
+        prompts = new String[i];
+
+        i =0;
+        while(obj.optString("value"+i,null)!=null) {
+            prompts[i] = obj.getString("value"+i);
+            i++;
+        }
+
+        response = obj.getString("response");
+
+        MultipleChoiceAnswer out = new MultipleChoiceAnswer(prompts);
+        out.setResponse(response);
+
+        return out;
     }
 
     @Override
