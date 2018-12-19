@@ -33,7 +33,7 @@ public class MultipleChoiceAnswerFragment extends AnswerFragment {
     public AnswerFragment newInstance() {
         return newInstance(null);
     }
-    public AnswerFragment newInstance(String[][] prompts) {
+    public AnswerFragment newInstance(String[] prompts) {
         AnswerFragment out = new MultipleChoiceAnswerFragment();
 
         return out;
