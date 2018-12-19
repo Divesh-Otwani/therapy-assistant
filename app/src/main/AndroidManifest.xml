@@ -25,10 +25,10 @@
             android:name=".activity.exercise.SelectExercise"
             android:label="Select Exercise" />
         <activity
-            android:name=".activity.resource.Resources"
+            android:name=".activity.resource.ResourceHome"
             android:label="@string/title_activity_resources" />
         <activity
-            android:name=".activity.resource.CBTResources"
+            android:name=".activity.resource.Resource"
             android:label="@string/title_activity_cbt_resources" />
         <activity
             android:name=".activity.exercise.DoExercise"

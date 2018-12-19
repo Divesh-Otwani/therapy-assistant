@@ -1,4 +1,4 @@
-package haverford.therapy_assistant.data;
+package haverford.therapy_assistant.data.resource;
 
 // Zach should work on this
 
