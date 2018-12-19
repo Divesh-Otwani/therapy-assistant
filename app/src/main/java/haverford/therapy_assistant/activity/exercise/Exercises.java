@@ -42,20 +42,19 @@ public class Exercises extends AppCompatActivity {
         ref = database.getReference();
 
 
-        /*for(Exercise ex : cd.pullExercises()){
-            Log.d(TAG, ex.toString());
-            Log.d(TAG, "After exercise");
-        }*/
-        //Log.d(TAG, cd.pullExercises().toString());
+
         ListView lw = (ListView) findViewById(R.id.recent_list);
         ListAdapter la = new ExerciseListRecentAdapter(this);
         lw.setAdapter(la);
+
+        /*
         ListView lw2 = (ListView) findViewById(R.id.last_week_list);
         ListAdapter la2 = new ExcerciseListLastWeekAdapter(this);
         lw2.setAdapter(la2);
         ListView lw3 = (ListView) findViewById(R.id.other_list);
         ListAdapter la3 = new ExerciseListOtherAdapter(this);
         lw3.setAdapter(la3);
+        */
 
 
     }
