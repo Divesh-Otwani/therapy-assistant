@@ -14,4 +14,6 @@ public class Just<E> extends Maybe<E> implements Serializable{
     public Optional<E> getValue() {
         return Optional.of(mE);
     }
+
+    public E getE(){ return mE; }
 }

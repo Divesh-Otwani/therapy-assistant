@@ -10,14 +10,16 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Question;
 
 public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
-    Vector<Question> qu;
-    public QuestionAnswerAdapter(Context context, Vector<Question> q){
+    ArrayList<Question> qu;
+
+    public QuestionAnswerAdapter(Context context, ArrayList<Question> q){
         qu = q;
     }
 
@@ -45,7 +47,7 @@ public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.question_answer_list, parent, false);
         }
         TextView tv = (TextView) view.findViewById(R.id.question);
-        tv.setText(question.getName());
+        tv.setText(question.getPrompt());
         /*
         ask how answer to question is shown and how to get the answer
 
@@ -54,7 +56,7 @@ public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
         // answer will always be a textview cause either a string, number or percentage
         TextView tv2 = (TextView) view.findViewById(R.id.answer);
         if(question.isAnswered()){
-            tv2.setText(question.getAnswerName().toString());
+            tv2.setText(question.getAnswerString());
         }
 
         return view;

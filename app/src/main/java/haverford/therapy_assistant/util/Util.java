@@ -16,7 +16,7 @@ import java.util.Vector;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.activity.exercise.Exercises;
-import haverford.therapy_assistant.activity.resource.Resources;
+import haverford.therapy_assistant.activity.resource.ResourceHome;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
@@ -86,7 +86,7 @@ public class Util {
                                       MenuItem item){
         switch (item.getItemId()){
             case R.id.menu_resources:
-                Util.startActivity(act, Resources.class);
+                Util.startActivity(act, ResourceHome.class);
                 return true;
 
             case R.id.menu_exercises:

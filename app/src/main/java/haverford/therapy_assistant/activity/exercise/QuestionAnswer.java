@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
@@ -24,33 +25,18 @@ public class QuestionAnswer extends AppCompatActivity {
         setContentView(R.layout.question_answer_activity);
         Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
 
-
-
-        /*FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
-        doExercise.setSize(FloatingActionButton.SIZE_AUTO);
-        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));*/
+        // Get intent extras: list of questions,
         Intent creator = this.getIntent();
-        Vector<Question> mQuestions = (Vector<Question>) creator.getExtras().getSerializable("recent_list_arg");
-        Intent i = getIntent();
+        ArrayList<Question> mQuestions = (ArrayList<Question>) creator.getExtras().getSerializable("recent_list_arg");
+
+        // Setup the list view.
         ListView lv = (ListView) findViewById(R.id.questionanswer_list);
-        ListAdapter ad = new QuestionAnswerAdapter(this, (Vector<Question>)i.getSerializableExtra("questions"));
+        ListAdapter ad = new QuestionAnswerAdapter(this, mQuestions);
         lv.setAdapter(ad);
-        //CloudData cd = new CloudData();
-
-
-
-        /*for(Exercise ex : cd.pullExercises()){
-            Log.d(TAG, ex.toString());
-            Log.d(TAG, "After exercise");
-        }*/
-        //Log.d(TAG, cd.pullExercises().toString());
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         return Util.createOptionsMenu(this, menu);
     }
 

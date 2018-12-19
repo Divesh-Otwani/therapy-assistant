@@ -26,6 +26,6 @@
         <ListView
             android:id="@+id/questionanswer_list"
             android:layout_width="match_parent"
-            android:layout_height="567dp"></ListView>
+            android:layout_height="wrap_content"></ListView>
     </LinearLayout>
 </RelativeLayout>

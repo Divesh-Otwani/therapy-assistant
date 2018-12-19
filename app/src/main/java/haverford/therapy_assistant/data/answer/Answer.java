@@ -3,12 +3,13 @@ package haverford.therapy_assistant.data.answer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 import haverford.therapy_assistant.data.QuestionType;
 
-public abstract class Answer {
+public abstract class Answer implements Serializable {
     private String mAnswer;
     public abstract QuestionType getQuestionType();
-    //public String getValue(){return mAnswer;}
 
     public JSONObject toJSON() throws  JSONException{
         String jsonStart = "{\n\t\"value\": ";
