@@ -80,7 +80,7 @@ public class ExerciseListOtherAdapter extends BaseAdapter implements ListAdapter
         final Exercise e = ex.get(position);
         final Context context = parent.getContext();
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.activity_exercises, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.activity_exercise_list, parent, false);
         }
         TextView name = (TextView) view.findViewById(R.id.exercise);
         name.setText(e.getName());

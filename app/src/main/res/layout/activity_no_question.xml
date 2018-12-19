@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.exercise.NoQuestion">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/selectexercise_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="20"
+        />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/cmunci"
+        android:gravity="center_horizontal"
+        android:padding="25dp"
+        android:text="Sorry no questions were asked for this exercise or no answers. "
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>

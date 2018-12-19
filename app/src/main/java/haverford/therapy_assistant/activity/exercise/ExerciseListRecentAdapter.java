@@ -2,6 +2,7 @@ package haverford.therapy_assistant.activity.exercise;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.localstore.LocalStorage;
+import java.text.SimpleDateFormat;
 
 public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapter{
     private LocalStorage localStorage;
@@ -28,9 +30,12 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
     private Vector<Exercise> ex;
     public ExerciseListRecentAdapter(Context context){
         localStorage = new LocalStorage(context);
-        queryExercises = new HashMap<Date,Vector<Exercise>>();
+        //queryExercises = new HashMap<Date,Vector<Exercise>>();
+        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        Vector<Question> qu = new Vector<>();
+        localStorage.storeExercise(currDate, new Exercise(100, "Exercise", qu));
         queryExercises = localStorage.queryExercises();
-        ex = new Vector<>();
+        //ex = new Vector<>();
         ex = collectallexercise();
     }
 
@@ -91,7 +96,7 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         final Exercise e = ex.get(position);
         final Context context = parent.getContext();
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.activity_exercises, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.activity_exercise_list, parent, false);
         }
         TextView name = (TextView) view.findViewById(R.id.exercise);
         name.setText(e.getName());
@@ -101,9 +106,19 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         ) {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, QuestionAnswer.class);
-                i.putExtra("questions", e.getQuestions());
-                context.startActivity(i);
+                if(e.getQuestions().size() == 0){
+                    Intent i = new Intent(context, NoQuestion.class);
+                    context.startActivity(i);
+                }else{
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("recent_list_arg", e.getQuestions());
+                    Intent i = new Intent(context, QuestionAnswer.class);
+                    i.putExtras(bundle);
+
+                    context.startActivity(i);
+                }
+
+
 
             }
         });

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 
 import android.widget.ActionMenuView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.sql.Date;
@@ -28,7 +29,15 @@ import java.util.Calendar;
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
+import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.PercentageAnswer;
+import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
+import haverford.therapy_assistant.data.answer.TextAnswer;
+import haverford.therapy_assistant.fragment.AnswerFragment;
+import haverford.therapy_assistant.fragment.PercentageAnswerFragment;
+import haverford.therapy_assistant.fragment.ScaleOfTenAnswerFragment;
+import haverford.therapy_assistant.fragment.TextAnswerFragment;
 import haverford.therapy_assistant.localstore.LocalStorage;
 
 public class DoExercise extends AppCompatActivity {
@@ -111,9 +120,27 @@ public class DoExercise extends AppCompatActivity {
         getSupportActionBar().show();
     }
 
+    private Answer selectFragment(QuestionType ty, String cs){
+        switch (ty){
+            case PercentageAnswer:
+                return new PercentageAnswer(Integer.valueOf(cs));
+            case TextAnswer:
+                return new TextAnswer((String) cs);
+            case ScaleOfTenAnswer:
+                return new ScaleOfTenAnswer(Integer.valueOf(cs));
+        }
+        return null; // Crash!
+    }
+
     private void saveAnswer(){
-        Answer ans = mPageAdapter.getCurrFragment().getAnswer();
+        EditText ed = (EditText) findViewById(R.id.editTextAnswer);
+        String eds = ed.getText().toString();
+//        mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).setmAnswer(ed.getText().toString());
+        Answer ans = mPageAdapter.getCurrFragment(getCurrQuestion().getQType()).getAnswer();
+
+        Log.d("DoExercise saveAnswer()", ed.getText().toString());
         getCurrQuestion().answerQuestion(ans);
+        //getCurrQuestion().answerQuestion(selectFragment(getCurrQuestion().getQType(), eds));
     }
 
     private void saveExercise(){

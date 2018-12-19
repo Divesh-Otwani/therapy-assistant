@@ -52,7 +52,7 @@ public class Exercises extends AppCompatActivity {
         lw.setAdapter(la);
         ListView lw2 = (ListView) findViewById(R.id.last_week_list);
         ListAdapter la2 = new ExcerciseListLastWeekAdapter(this);
-        lw.setAdapter(la2);
+        lw2.setAdapter(la2);
         ListView lw3 = (ListView) findViewById(R.id.other_list);
         ListAdapter la3 = new ExerciseListOtherAdapter(this);
         lw3.setAdapter(la3);

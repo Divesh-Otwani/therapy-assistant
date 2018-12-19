@@ -38,8 +38,9 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
         return null; // Crash!
     }
 
-    public AnswerFragment getCurrFragment(){
-        return new TextAnswerFragment(); // For now.
+    public AnswerFragment getCurrFragment(QuestionType ty){
+        //return new TextAnswerFragment(); // For now.
+        return selectFragment(ty);
     }
 
     @Override

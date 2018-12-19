@@ -23,6 +23,7 @@ public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
+
         return qu.size();
     }
 

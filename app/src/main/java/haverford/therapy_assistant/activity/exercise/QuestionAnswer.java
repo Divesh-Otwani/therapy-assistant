@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.Vector;
 
 import haverford.therapy_assistant.R;
+import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.data.Question;
 
@@ -25,9 +26,11 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-        FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
+        /*FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab);
         doExercise.setSize(FloatingActionButton.SIZE_AUTO);
-        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
+        doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));*/
+        Intent creator = this.getIntent();
+        Vector<Question> mQuestions = (Vector<Question>) creator.getExtras().getSerializable("recent_list_arg");
         Intent i = getIntent();
         ListView lv = (ListView) findViewById(R.id.questionanswer_list);
         ListAdapter ad = new QuestionAnswerAdapter(this, (Vector<Question>)i.getSerializableExtra("questions"));

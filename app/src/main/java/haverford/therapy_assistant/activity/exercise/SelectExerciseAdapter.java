@@ -67,11 +67,11 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
             }});
 
 
-        }
-    });
-    return view;
+        //}
+    //});
+    //return view;
 
-    }}
+    //}}
 
 // TODO: Uncomment below.
         /*if (position >= 0 && position < 3 ){
