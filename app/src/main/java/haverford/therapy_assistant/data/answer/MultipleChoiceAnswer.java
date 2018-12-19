@@ -7,18 +7,18 @@ import haverford.therapy_assistant.data.QuestionType;
 
 public class MultipleChoiceAnswer extends Answer{
 
-    private String[][] mPrompts; // row,col
+    private String[] mPrompts; // row,col
     private int length;
-    String[] mResponses;
+    String mResponse;
 
-    public MultipleChoiceAnswer(String[][] prompts) {
+    public MultipleChoiceAnswer(String[] prompts) {
         mPrompts = prompts;
         length = mPrompts.length;
-        mResponses = null;
+        mResponse = null;
     }
 
-    public void setResponses(String[] responses) {
-        mResponses = responses;
+    public void setResponse(String response) {
+        mResponse = response;
     }
 
     @Override
@@ -26,26 +26,6 @@ public class MultipleChoiceAnswer extends Answer{
         return QuestionType.MultipleChoiceAnswer;
     }
 
-    @Override
-    public JSONObject toJSON() throws  JSONException{
-        String jsonStart = "{";
-        String jsonTemplate = "\n\t\"value";
-        String jsonTemp2 = "\": "
-        String jsonEnd = "\n}";
-
-        String json = jsonStart;
-
-        String[] responses = getValue();
-
-        for(int i = 0; i < length; i++) {
-            json+= jsonTemplate+i+jsonTemp2+"\""+mPrompts[i][0]+": "+responses[i]+"\"";
-            if(i!=length-1) json+=",";
-            else json+=jsonEnd;
-        }
-
-
-        return new JSONObject(json);
-    }
 
     @Override
     public Answer fromJSON(JSONObject obj) throws JSONException {
@@ -53,8 +33,8 @@ public class MultipleChoiceAnswer extends Answer{
     }
 
     @Override
-    public String[] getValue() {
-        return mResponses;
+    public String getValue() {
+        return mResponse;
     }
 
 }
