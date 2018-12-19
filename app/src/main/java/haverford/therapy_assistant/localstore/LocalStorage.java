@@ -29,6 +29,7 @@ import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
+import haverford.therapy_assistant.data.answer.MultipleChoiceAnswer;
 import haverford.therapy_assistant.data.answer.PercentageAnswer;
 import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
 import haverford.therapy_assistant.data.answer.TextAnswer;
@@ -223,6 +224,7 @@ public class LocalStorage {
             case TextAnswer: return new TextAnswer(null).fromJSON(answer);
             case PercentageAnswer: return new PercentageAnswer(0).fromJSON(answer);
             case ScaleOfTenAnswer: return new ScaleOfTenAnswer(0).fromJSON(answer);
+            case MultipleChoiceAnswer: return new MultipleChoiceAnswer().fromJSON(answer);
             default: return null;
         }
     }

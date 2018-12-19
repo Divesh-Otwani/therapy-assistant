@@ -18,6 +18,8 @@ public class MultipleChoiceAnswer extends Answer{
         length = mPrompts.length;
         mResponse = null;
     }
+    public MultipleChoiceAnswer() {
+    }
 
     public Answer setResponse(String response) {
         mResponse = response;
