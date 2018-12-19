@@ -25,6 +25,6 @@ public class ScaleOfTenAnswer extends Answer {
 
     @Override
     public Answer fromJSON(JSONObject obj) throws JSONException {
-        return new PercentageAnswer(obj.getInt("value"));
+        return new ScaleOfTenAnswer(obj.getInt("value"));
     }
 }
