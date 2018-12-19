@@ -25,16 +25,14 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
     private DatabaseReference ref;
     Vector<Exercise> exercises;
 
-    public SelectExerciseAdapter(Context context, Vector<Exercise> ex){
+    public SelectExerciseAdapter(Context context, Vector<Exercise> ex) {
         exercises = ex;
     }
 
 
     @Override
     public int getCount() {
-        // TODO: Uncomment
         return exercises.size();
-        //return 3;
     }
 
     @Override
@@ -64,45 +62,9 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
                 i.putExtras(bundle);
 
                 context.startActivity(i);
-            }});
-
-
-        }
-    });
-    return view;
-
-    }}
-
-// TODO: Uncomment below.
-        /*if (position >= 0 && position < 3 ){
-            final Context context = parent.getContext();
-            if (view == null) {
-                view = LayoutInflater.from(context).inflate(R.layout.activity_selectexercise_list, parent, false);
             }
-            final TextView tv = (TextView) view.findViewById(R.id.exercise_name);
-            // TODO: Uncomment
-            //tv.setText(exercises.get(position).getName());
-            tv.setText(Util.util_exercise.getName());
-            tv.setOnClickListener(new View.OnClickListener(
+        });
 
-            ) {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    // TODO: make a constants file for "exercise_arg" and other constants.
-                    Exercise exercise = exercises.get(position);
-                    // TODO: Uncomment below.
-                    bundle.putSerializable("exercise_arg", Util.util_exercise );
-                    Intent i = new Intent(context, DoExercise.class);
-                    i.putExtras(bundle);
-                    context.startActivity(i);
-
-                }
-            });
-
-            return view;
-        } else {
-            return null;*/
-    return view;
+        return view;
     }
 }
