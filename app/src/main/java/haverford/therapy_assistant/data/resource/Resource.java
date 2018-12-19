@@ -1,6 +1,5 @@
 package haverford.therapy_assistant.data.resource;
 
-// Zach should work on this
 
 public class Resource {
     private String Name;
