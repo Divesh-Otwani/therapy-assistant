@@ -28,14 +28,17 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
     private LocalStorage localStorage;
     private HashMap<Date,Vector<Exercise>> queryExercises;
     private Vector<Exercise> ex;
+
     public ExerciseListRecentAdapter(Context context){
         localStorage = new LocalStorage(context);
         //queryExercises = new HashMap<Date,Vector<Exercise>>();
         /*Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+        Date currDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Vector<Question> qu = new Vector<>();
         localStorage.storeExercise(currDate, new Exercise(100, "Exercise", qu));*/
         queryExercises = localStorage.queryExercises();
-        //ex = new Vector<>();
+
         ex = collectallexercise();
     }
 

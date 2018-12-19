@@ -15,22 +15,9 @@ Above we have the core activities that make the application.
 
 # Active Development
 
-## To Work on This Week
 
- * Divesh: Get the view pager working and use Brian's fragments. Also, make sure
-   you use observers.
- * Yasmine: Make the right listadapters for the activities SelectExercise,
-   Exercises, CBTResources (this last activity should be renamed to
-   DisplayResources). Make sure things that are slow run on threads. Register
-   observers to update the views.
- * Brian: Create simple fragments of different answer types and have these take
-   text input, a dial input to 100 and a nice scale from 1 to 10.
- * Zach: Create an adapter for the grid view that displays resources.
+## Minimal Viable Product Requirements
 
-
-## Things to do next week
-
- * Display real exercises and resources and go and see Professor Gordon.
 
 
 ## Developer Resources and Key SO Links
@@ -40,26 +27,6 @@ Above we have the core activities that make the application.
  * Excellent for design: https://material.io/
 
 
-## Eventually, at the end
-
- * On the homepage, set a few resources and exercise as favorites
-   * Maybe add buttons to star exercises and you can unstar them by long
-     pressing
-   * Add, for each resource (in listviews) buttons to star them
-   * Add a FAQ page explaining these things
- * Make all the layouts relative to the screen size (not orientation, for now...)
- * Make things pretty
-   * Add images
-   * Add a nice theme
-   * Add animations
-   * Make the overflow menu's logo something different and nice
- * Make the Exercise home page more complex to be one continuous scroll but
-   connect headers when you run out
-
-
-## Practical Testing
-
- * We should test this on two different phones
 
 ## Coding Style Rules
 

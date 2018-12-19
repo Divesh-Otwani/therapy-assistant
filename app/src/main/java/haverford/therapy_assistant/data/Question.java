@@ -57,9 +57,14 @@ public class Question implements Serializable {
 
     }
 
-    public Answer getAnswerName(){
-        if(isAnswered()) return mAnswer.getValue().get();
-        else return null;
+    public String getAnswerString(){
+        if (mAnswer instanceof Just){
+            Just<Answer> casted = (Just<Answer>) mAnswer;
+            Answer ans = casted.getE();
+            return ans.toString();
+        } else {
+            return "";
+        }
     }
 
     public int getUID(){return mUID;}

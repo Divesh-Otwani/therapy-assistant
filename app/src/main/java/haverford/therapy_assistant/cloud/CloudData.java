@@ -3,7 +3,6 @@ package haverford.therapy_assistant.cloud;
 // Yasmine should work primiarly in this package
 // You can make constructors that take whatever inputs you choose
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,15 +11,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Vector;
 
-import haverford.therapy_assistant.data.ArticleResource;
+import haverford.therapy_assistant.data.resource.ArticleResource;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
-import haverford.therapy_assistant.data.Resource;
+import haverford.therapy_assistant.data.resource.Resource;
 
 public class CloudData {
     private String TAG = "ViewDatabase";
