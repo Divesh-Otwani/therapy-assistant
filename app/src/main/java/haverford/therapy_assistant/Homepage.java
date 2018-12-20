@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 
+import haverford.therapy_assistant.activity.exercise.ExerciseListRecentAdapter;
 import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.activity.exercise.SelectExercise;
 
@@ -28,6 +31,10 @@ public class Homepage extends AppCompatActivity {
         FloatingActionButton doExercise = this.findViewById(R.id.exercises_fab_home);
         doExercise.setSize(FloatingActionButton.SIZE_AUTO);
         doExercise.setOnClickListener(Util.makeActStartListener(this, SelectExercise.class));
+
+        ListView lw = (ListView) findViewById(R.id.recent_list_homepage);
+        ListAdapter la = new ExerciseListRecentAdapter(this);
+        lw.setAdapter(la);
 
     }
 
