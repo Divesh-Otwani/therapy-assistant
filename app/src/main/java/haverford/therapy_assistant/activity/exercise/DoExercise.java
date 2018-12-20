@@ -137,11 +137,7 @@ public class DoExercise extends AppCompatActivity {
 
     private void saveExercise(){
         LocalStorage l = new LocalStorage(this);
-        // TODO: Note for Brian.
-        // TODO: If you can, we want to make this work with more specific time.
-        l.storeExercise(new Date((new java.util.Date()).getTime()), mExercise);
-        // TODO: Replace the line above with this line below.
-        // l.storeExercise(new java.util.Date(), mExercise);
+         l.storeExercise(new java.util.Date(), mExercise);
     }
 
     private void goToExercisesPage(){
