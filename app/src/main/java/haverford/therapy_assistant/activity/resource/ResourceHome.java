@@ -19,11 +19,11 @@ public class ResourceHome extends AppCompatActivity {
         setContentView(R.layout.activity_resources);
 
 
-        Button actButton = this.findViewById(R.id.grid_button_act);
-        Button cbtButton = this.findViewById(R.id.grid_button_cbt);
+        //Button actButton = this.findViewById(R.id.grid_button_act);
+        //Button cbtButton = this.findViewById(R.id.grid_button_cbt);
 
         Util.makeToolbar(this, TITLE, R.id.resource_toolbar);
-        Util.buttonActivityStarter(this,cbtButton,Resource.class);
+        //Util.buttonActivityStarter(this,cbtButton,Resource.class);
 
     }
 

@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.Arrays;
 import java.util.Vector;
 
+import haverford.therapy_assistant.Homepage;
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.activity.exercise.Exercises;
 import haverford.therapy_assistant.activity.resource.ResourceHome;
@@ -85,6 +86,10 @@ public class Util {
     public static boolean optionItemSelected(AppCompatActivity act,
                                       MenuItem item){
         switch (item.getItemId()){
+            case R.id.menu_home:
+                Util.startActivity(act, Homepage.class);
+                return true;
+                
             case R.id.menu_resources:
                 Util.startActivity(act, ResourceHome.class);
                 return true;
