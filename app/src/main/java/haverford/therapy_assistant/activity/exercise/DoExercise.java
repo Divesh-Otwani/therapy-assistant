@@ -114,10 +114,11 @@ public class DoExercise extends AppCompatActivity {
         getSupportActionBar().show();
     }
 
-    private Answer selectFragment(QuestionType ty, String cs){
+    private Answer selectFragment(Question q, String cs){
+        QuestionType ty = q.getQType();
         switch (ty){
             case MultipleChoiceAnswer:
-                return new MultipleChoiceAnswer();
+
             case PercentageAnswer:
                 return new PercentageAnswer(Integer.valueOf(cs));
             case TextAnswer:
@@ -136,7 +137,7 @@ public class DoExercise extends AppCompatActivity {
 
     private void saveExercise(){
         LocalStorage l = new LocalStorage(this);
-        // TODO: Note for Brian.
+        l.storeExercise(new java.util.Date(), mExercise);
     }
 
     private void goToExercisesPage(){

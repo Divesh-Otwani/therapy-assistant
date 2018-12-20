@@ -55,6 +55,17 @@ public class Question implements Serializable {
 
     }
 
+    public String[] getMCIfCan() {
+        if (mAnswer instanceof Just){
+            Just<Answer> justans = (Just<Answer>) mAnswer;
+            Answer answer = justans.getE();
+            return answer.getStringArr();
+        }else {
+            String[] ans = {};
+            return ans;
+        }
+    }
+
     public String getAnswerString(){
         if (mAnswer instanceof Just){
             Just<Answer> casted = (Just<Answer>) mAnswer;

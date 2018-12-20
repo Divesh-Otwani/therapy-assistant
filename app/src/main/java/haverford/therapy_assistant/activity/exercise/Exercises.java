@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,6 +62,7 @@ public class Exercises extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        collectAllExercises(this, exercises, mExerciseListAdapter);
 
     }
 

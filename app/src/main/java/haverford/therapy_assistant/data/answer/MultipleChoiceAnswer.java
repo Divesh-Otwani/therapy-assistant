@@ -23,6 +23,11 @@ public class MultipleChoiceAnswer extends Answer implements Serializable {
     public MultipleChoiceAnswer() {
     }
 
+    @Override
+    public String[] getStringArr(){
+        return mPrompts;
+    }
+
     public Answer setResponse(String response) {
         mResponse = response;
         return this;

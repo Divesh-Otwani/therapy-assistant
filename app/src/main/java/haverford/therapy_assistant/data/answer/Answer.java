@@ -27,4 +27,9 @@ public abstract class Answer implements Serializable {
 
     public abstract String toString();
 
+    public String[] getStringArr(){
+        String[] x = {};
+        return x;
+    }
+
 }

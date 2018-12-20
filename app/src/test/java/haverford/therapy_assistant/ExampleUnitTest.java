@@ -1,10 +1,13 @@
 package haverford.therapy_assistant;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+//import android.content.Context;
+//import android.support.test.InstrumentationRegistry;
 
 import org.junit.Test;
 
+
+import java.text.DateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +26,13 @@ public class ExampleUnitTest {
 
     @Test
     public void test_Dates() {
-        //Date d = Date.valueOf("should break");
+        Date d = new java.util.Date();
+
+        Date q = new Date(d.getTime());
+
+        assert(d.toString().equals(q.toString()));
+
+
     }
 
 }

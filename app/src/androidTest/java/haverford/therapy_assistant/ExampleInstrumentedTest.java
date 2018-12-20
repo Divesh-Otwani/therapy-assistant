@@ -8,7 +8,7 @@ import android.util.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Vector;
 
 import haverford.therapy_assistant.data.Exercise;
@@ -59,9 +59,11 @@ public class ExampleInstrumentedTest {
 
         LocalStorage store = new LocalStorage(InstrumentationRegistry.getTargetContext());
 
-        store.storeExercise(Date.valueOf("2018-9-20"),inTest);
+        Date now = new Date();
 
-        Exercise outTest = store.queryExercises().get(Date.valueOf("2018-9-20")).get(0);
+        store.storeExercise(now,inTest);
+
+        Exercise outTest = store.queryExercises().get(new Date(now.getTime())).get(0);
         Log.d("Blarp","AFTER:\n"+outTest.toString());
 
         assertTrue(outTest.getName().equals("Test Exercise"));
