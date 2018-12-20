@@ -37,6 +37,7 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
     private AnswerFragment selectFragment(QuestionType ty){
         switch (ty){
             case MultipleChoiceAnswer:
+                // TODO: Fix this.
                 return new MultipleChoiceAnswerFragment();
             case PercentageAnswer:
                 return new PercentageAnswerFragment();
@@ -45,7 +46,7 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
             case ScaleOfTenAnswer:
                 return new ScaleOfTenAnswerFragment();
         }
-        return null; // Crash!
+        return null;
     }
 
     @Override

@@ -20,7 +20,7 @@
         android:textColor="#ffffff"
         android:fontFamily="@font/liberationserif"
         android:background="#1e88e5"
-        android:text="TextView" />
+        />
 
     <TextView
         android:id="@+id/do_exercise_question"
@@ -30,15 +30,17 @@
         android:padding="10dp"
         android:fontFamily="@font/liberationserif"
         android:textSize="18sp"
-        android:text="TextView" />
+        android:background="#bddefc"
+        />
+
+
 
     <haverford.therapy_assistant.util.NonSwipeViewPager
         android:id="@+id/do_exercise_response"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="65"
-        android:padding="10dp"
-        android:background="@drawable/border">
+        android:padding="10dp">
     </haverford.therapy_assistant.util.NonSwipeViewPager>
 
 

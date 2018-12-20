@@ -8,7 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_linear_layout"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -16,94 +17,34 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <TextView
-            android:id="@+id/exerciselog_recent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:fontFamily="@font/liberationserif"
-            android:text="Recent"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="104dp">
-            <LinearLayout
-                android:id="@+id/layout_recent_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/recent_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="148dp"></ListView>
-
-
-
-            </LinearLayout>
-
-
-        </ScrollView>
-
-
-        <TextView
-            android:id="@+id/exerciselog_lastweek"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="Last Week"
-            android:fontFamily="@font/liberationserif"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="149dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/last_week_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="148dp"></ListView>
-            </LinearLayout>
-
-        </ScrollView>
-
-        <TextView
-            android:id="@+id/exerciselog_rest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="Other Completed Exercises"
-            android:textSize="20sp"
-            android:fontFamily="@font/liberationserif"
-            android:textStyle="bold" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="170dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/other_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="148dp"></ListView>
-            </LinearLayout>
-        </ScrollView>
-
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/exerciselog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_linear_layout"
+        android:padding="15dp"
+        android:fontFamily="@font/liberationserif"
+        android:text="Completed Exercises"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <ScrollView
+        android:layout_below="@+id/exerciselog"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:layout_height="104dp">
+
+        <ListView
+            android:id="@+id/recent_list"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"></ListView>
+
+    </ScrollView>
+
 
 
     <android.support.design.widget.FloatingActionButton

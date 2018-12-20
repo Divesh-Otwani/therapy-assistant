@@ -62,18 +62,18 @@
         android:textStyle="bold" />
 
 
-    <HorizontalScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_below="@+id/tv2"
-        android:layout_height="60pt">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/fav_exercises"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
-    </HorizontalScrollView>
+        <ListView
+            android:id="@+id/recent_exercises"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"></ListView>
 
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/exercises_fab_home"

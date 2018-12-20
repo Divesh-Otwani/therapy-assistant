@@ -3,6 +3,7 @@ package haverford.therapy_assistant.activity.exercise;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +32,13 @@ import haverford.therapy_assistant.localstore.LocalStorage;
 import java.text.SimpleDateFormat;
 
 public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapter{
-    private LocalStorage localStorage;
-    private HashMap<Date,Vector<Exercise>> queryExercises;
     private Vector<Exercise> ex;
+    private ArrayList<DataSetObserver> observers = new ArrayList();
 
-    public ExerciseListRecentAdapter(Context context){
-        localStorage = new LocalStorage(context);
-        queryExercises = localStorage.queryExercises();
-        ex = collectallexercise();
+
+
+    public ExerciseListRecentAdapter(Vector<Exercise> exercises){
+        ex = exercises;
     }
 
 
@@ -63,19 +63,20 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         return !(testDate.before(getWeekStartDate()) || testDate.after(getWeekEndDate()));
     }
 
+    @Override
+    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
+        observers.add(dataSetObserver);
+    }
 
-    private Vector<Exercise> collectallexercise(){
-        Vector<Exercise> exe = new Vector<>();
-        Iterator<Map.Entry<Date, Vector<Exercise>>> entries = queryExercises.entrySet().iterator();
-        while (entries.hasNext()){
-            Map.Entry<Date, Vector<Exercise>> pair = entries.next();
-            for (Exercise ex : pair.getValue()){
-                ex.setDate(pair.getKey());
-                exe.add(ex);
-            }
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+        observers.remove(dataSetObserver);
+    }
+
+    public void tellObservers(){
+        for (DataSetObserver o : observers){
+            o.notify();
         }
-        Collections.sort(exe);
-        return exe;
     }
 
 

@@ -125,23 +125,18 @@ public class DoExercise extends AppCompatActivity {
             case ScaleOfTenAnswer:
                 return new ScaleOfTenAnswer(Integer.valueOf(cs));
         }
-        return null; // Crash!
+        return null;
     }
 
     private void saveAnswer() {
         AnswerFragment currFragment = (AnswerFragment) mPageAdapter.getItem(mPtr);
         Answer ans = currFragment.getAnswer();
-        mExercise.getQuestions().get(mPtr).answerQuestion(ans); // This mutates state right?
-
+        mExercise.getQuestions().get(mPtr).answerQuestion(ans);
     }
 
     private void saveExercise(){
         LocalStorage l = new LocalStorage(this);
         // TODO: Note for Brian.
-        // TODO: If you can, we want to make this work with more specific time.
-        l.storeExercise(new Date((new java.util.Date()).getTime()), mExercise);
-        // TODO: Replace the line above with this line below.
-        // l.storeExercise(new java.util.Date(), mExercise);
     }
 
     private void goToExercisesPage(){
