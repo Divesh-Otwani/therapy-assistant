@@ -16,7 +16,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.sql.Date;
+
+//import java.sql.Date;
+import java.util.Date;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,7 +50,7 @@ public class LocalStorage {
      * @return Returns File representing the directory
      */
     private File getDir(Date date) {
-        return context.getDir(date.toString(),Context.MODE_APPEND);
+        return context.getDir(""+date.getTime(),Context.MODE_APPEND);
     }
 
     /**
@@ -59,15 +62,6 @@ public class LocalStorage {
         try {
             //return new JsonWriter(new FileWriter(toWrite));
             return new JsonWriter(new OutputStreamWriter(new FileOutputStream(toWrite),"UTF-8"));
-        } catch(IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    private FileWriter getFileWriter(File toWrite)
-    {
-        try {
-            return new FileWriter(toWrite);
         } catch(IOException e) {
             e.printStackTrace();
             return null;
@@ -190,7 +184,7 @@ public class LocalStorage {
     public boolean storeExercise(Date date, Exercise e){
 
         File targetDir = getDir(date);
-        String exerciseFilename = "exercise-"+date.toString()+"-"+System.nanoTime()+".json";
+        String exerciseFilename = "exercise-"+System.nanoTime()+".json";
         File storedExercise = new File(targetDir,exerciseFilename);
 
         //storedExercise.createNewFile();
@@ -204,7 +198,6 @@ public class LocalStorage {
             ex.printStackTrace();
         }
 
-        double len = storedExercise.length();
         return writer!=null;
 
     }
@@ -337,7 +330,7 @@ public class LocalStorage {
         for(String dir : dirList) {
             try {
                 String dateGet = dir.substring(4);
-                Date date = Date.valueOf(dateGet);
+                Date date = new Date(Long.valueOf(dateGet));
                 File dateDir = context.getDir(dateGet, Context.MODE_APPEND);
                 if(dateDir.isDirectory()) {
                     File[] exercises = dateDir.listFiles();
@@ -352,6 +345,25 @@ public class LocalStorage {
         }
 
         return out;
+    }
+
+    public void deleteDate(Date date) {
+        File dateDir = context.getDir(""+date.getTime(), Context.MODE_APPEND);
+        dateDir.delete();
+    }
+
+    public void deleteExercise(Date date, Exercise exercise) {
+        File dateDir = context.getDir(""+date.getTime(), Context.MODE_APPEND);
+        int uID = exercise.getUID();
+
+        File[] exercises = dateDir.listFiles();
+
+        for(File file : exercises) {
+            try {
+                if (uID == generateExercise(file).getUID()) file.delete();
+            }catch(Exception e) {e.printStackTrace();}
+        }
+
     }
 
 }

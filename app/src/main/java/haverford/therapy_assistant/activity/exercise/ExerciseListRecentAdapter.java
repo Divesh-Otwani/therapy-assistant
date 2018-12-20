@@ -15,7 +15,14 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.sql.Date;
+
+
+//BRIAN CHANGED THIS HOPE ALL OK
+//import java.sql.Date;
+import java.util.Date;
+//BRIAN CHANGED THIS
+
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
