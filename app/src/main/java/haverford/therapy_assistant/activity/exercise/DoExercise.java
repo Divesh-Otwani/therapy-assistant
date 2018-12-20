@@ -118,7 +118,7 @@ public class DoExercise extends AppCompatActivity {
         QuestionType ty = q.getQType();
         switch (ty){
             case MultipleChoiceAnswer:
-
+                return new MultipleChoiceAnswer(q.getMCIfCan());
             case PercentageAnswer:
                 return new PercentageAnswer(Integer.valueOf(cs));
             case TextAnswer:
