@@ -32,18 +32,12 @@
         android:textStyle="bold" />
 
 
-    <ScrollView
-        android:layout_below="@+id/exerciselog"
-        android:layout_width="match_parent"
-        android:paddingLeft="20dp"
-        android:layout_height="104dp">
-
         <ListView
             android:id="@+id/recent_list"
+            android:layout_below="@+id/exerciselog"
             android:layout_width="match_parent"
             android:layout_height="148dp"></ListView>
 
-    </ScrollView>
 
 
 

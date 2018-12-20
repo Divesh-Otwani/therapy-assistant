@@ -54,8 +54,10 @@ public class Exercises extends AppCompatActivity {
         exercises = new Vector<Exercise>();
         ListView lw = (ListView) findViewById(R.id.recent_list);
         mExerciseListAdapter = new ExerciseListRecentAdapter(exercises);
-        collectAllExercises(this, exercises, mExerciseListAdapter);
         lw.setAdapter(mExerciseListAdapter);
+
+        collectAllExercises(this, exercises, mExerciseListAdapter);
+
 
     }
 
@@ -67,7 +69,7 @@ public class Exercises extends AppCompatActivity {
     }
 
     public static void collectAllExercises(Context c, Vector<Exercise> exe, ExerciseListRecentAdapter adapter){
-        exe = new Vector<>();
+        exe.clear();
         LocalStorage localStorage = new LocalStorage(c);
         HashMap<Date,Vector<Exercise>> queryExercises = localStorage.queryExercises();
         Iterator<Map.Entry<Date, Vector<Exercise>>> entries = queryExercises.entrySet().iterator();

@@ -39,8 +39,9 @@ public class Homepage extends AppCompatActivity {
         ListView recentExercises = (ListView) this.findViewById(R.id.recent_exercises);
         Vector<Exercise> exercises = new Vector<>();
         ExerciseListRecentAdapter recentExerciseAdapter = new ExerciseListRecentAdapter(exercises);
-        Exercises.collectAllExercises(this, exercises, recentExerciseAdapter);
         recentExercises.setAdapter(recentExerciseAdapter);
+        Exercises.collectAllExercises(this, exercises, recentExerciseAdapter);
+
 
 
     }

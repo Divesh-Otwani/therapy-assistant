@@ -40,7 +40,7 @@ import java.text.SimpleDateFormat;
 
 public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapter{
     private Vector<Exercise> ex;
-    private ArrayList<DataSetObserver> observers = new ArrayList();
+    private ArrayList<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 
 
 
@@ -83,7 +83,8 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
     public void tellObservers(){
         for (DataSetObserver o : observers){
             synchronized (o){
-                o.notify();
+                o.onChanged();
+                //o.notify();
             }
         }
     }

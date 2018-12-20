@@ -62,19 +62,16 @@
         android:textStyle="bold" />
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_below="@+id/tv2"
-        android:layout_height="match_parent">
+
 
         <ListView
             android:id="@+id/recent_exercises"
             android:paddingLeft="20dp"
             android:layout_width="match_parent"
+            android:layout_below="@+id/tv2"
             android:layout_height="148dp"></ListView>
 
 
-    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/exercises_fab_home"
