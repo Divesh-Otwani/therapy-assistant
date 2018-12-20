@@ -1,12 +1,15 @@
 package haverford.therapy_assistant.data;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
-public class Exercise implements Serializable {
+public class Exercise implements Serializable,Comparable {
     private Date mDate;
     private int mUID;
     private String mName;
@@ -30,4 +33,27 @@ public class Exercise implements Serializable {
     public String toString(){
         return "{\n\t\"uID\": "+mUID+",\n\t\"name\": "+mName+",\n\t\"questions\": "+mQuestions.toString()+"\n}";
     }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if (o instanceof Exercise){
+            Exercise otherExercise = (Exercise) o;
+            long thisTime = this.getDate().getTime();
+            long otherTime = otherExercise.getDate().getTime();
+            Log.d("Timing fst exercise", Long.toString(thisTime));
+            Log.d("Timing snd exercise", Long.toString(otherTime));
+
+            if (thisTime < otherTime){
+                return -1;
+            } else if (thisTime == otherTime) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else { return -1; }
+    }
+
+
+
+
 }

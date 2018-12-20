@@ -10,9 +10,17 @@ import haverford.therapy_assistant.data.Exercise;
 
 public class CompareExercisePairs implements Comparator<Exercise> {
 
-
     @Override
     public int compare(Exercise o1, Exercise o2) {
-        return o2.getDate().compareTo(o1.getDate());
+        long o1time = o1.getDate().getTime();
+        long o2time = o2.getDate().getTime();
+        if (o1time < o2time) {
+            return 1;
+        } else if (o1time == o2time) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
+
 }
