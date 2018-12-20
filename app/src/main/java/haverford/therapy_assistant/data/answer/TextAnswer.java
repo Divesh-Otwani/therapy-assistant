@@ -13,7 +13,11 @@ public class TextAnswer extends Answer implements Serializable {
     private String mAnswer = "";
 
     public TextAnswer(String ans) {
-        mAnswer = ans;
+        if (ans != null) {
+            mAnswer = ans;
+        } else {
+            mAnswer = "(No response given.)";
+        }
     }
 
 

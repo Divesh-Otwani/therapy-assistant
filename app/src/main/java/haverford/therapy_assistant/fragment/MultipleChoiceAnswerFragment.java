@@ -19,13 +19,18 @@ import haverford.therapy_assistant.data.answer.ScaleOfTenAnswer;
 public class MultipleChoiceAnswerFragment extends AnswerFragment {
 
     private String[] mPrompts;
-    private String mResponse;
+    private String mResponse = "";
+
+    public void setmPrompts(String[] prompts){
+        mPrompts = prompts;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPrompts = (String[]) getArguments().getCharSequenceArray("prompts");
+        // TODO: Remove this:
+        //mPrompts = (String[]) getArguments().getCharSequenceArray("prompts");
 
     }
 
@@ -61,11 +66,13 @@ public class MultipleChoiceAnswerFragment extends AnswerFragment {
     public AnswerFragment newInstance() {
         return newInstance(null);
     }
-    public static AnswerFragment newInstance(String[] prompts) {
-        AnswerFragment out = new MultipleChoiceAnswerFragment();
 
-        Bundle args = new Bundle();
-        args.putCharSequenceArray("prompts",prompts);
+    public static AnswerFragment newInstance(String[] prompts) {
+        // TODO: Remove the next two lines.
+        //Bundle args = new Bundle();
+        //args.putCharSequenceArray("prompts",prompts);
+        MultipleChoiceAnswerFragment out = new MultipleChoiceAnswerFragment();
+        out.setmPrompts(prompts);
 
         return out;
     }

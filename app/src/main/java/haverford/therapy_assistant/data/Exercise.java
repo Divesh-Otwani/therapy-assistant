@@ -40,16 +40,13 @@ public class Exercise implements Serializable,Comparable {
             Exercise otherExercise = (Exercise) o;
             long thisTime = this.getDate().getTime();
             long otherTime = otherExercise.getDate().getTime();
-            // TODO: Remove this.
-            //Log.d("Timing fst exercise", Long.toString(thisTime));
-            //Log.d("Timing snd exercise", Long.toString(otherTime));
 
             if (thisTime < otherTime){
-                return -1;
+                return 1;
             } else if (thisTime == otherTime) {
                 return 0;
             } else {
-                return 1;
+                return -1;
             }
         } else { return -1; }
     }

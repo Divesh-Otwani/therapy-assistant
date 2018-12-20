@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.Vector;
 
 import haverford.therapy_assistant.data.Exercise;
+import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
 import haverford.therapy_assistant.data.answer.Answer;
 import haverford.therapy_assistant.fragment.AnswerFragment;
@@ -34,11 +35,11 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
         return mExercise.getQuestions().get(position).getQType();
     }
 
-    private AnswerFragment selectFragment(QuestionType ty){
+    private AnswerFragment selectFragment(Question q){
+        QuestionType ty = q.getQType();
         switch (ty){
             case MultipleChoiceAnswer:
-                // TODO: Fix this.
-                return new MultipleChoiceAnswerFragment();
+                return MultipleChoiceAnswerFragment.newInstance(q.getMCIfCan());
             case PercentageAnswer:
                 return new PercentageAnswerFragment();
             case TextAnswer:
@@ -56,7 +57,8 @@ public class DoExerciseAdapter extends FragmentPagerAdapter {
         if (curr != null){
             return curr;
         } else {
-            AnswerFragment newFragment = selectFragment(getCurrQuesType(position));
+            Question currQuestion = mExercise.getQuestions().get(position);
+            AnswerFragment newFragment = selectFragment(currQuestion);
             mFrags.setElementAt(newFragment, position);
             return newFragment;
         }
