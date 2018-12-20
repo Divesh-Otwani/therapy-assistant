@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -115,7 +116,9 @@ public class ExerciseListRecentAdapter extends BaseAdapter implements ListAdapte
         TextView dateText = (TextView) view.findViewById(R.id.exercise_date);
         TextView nameText = (TextView) view.findViewById(R.id.exercise_name);
         nameText.setText(e.getName());
-        dateText.setText(e.getDate().toString());
+        Date date = e.getDate();
+        String dateString = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.ENGLISH).format(date);
+        dateText.setText(dateString);
 
         view.setOnClickListener(new View.OnClickListener(
         ) {

@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/exercise_date"
-        android:layout_width="37dp"
+        android:layout_width="166dp"
         android:layout_height="40dp"
         android:layout_weight="5"
-        android:fontFamily="sans-serif-smallcaps"
+        android:fontFamily="@font/liberationserif"
         android:padding="10dp"
         android:textColor="#000000"
         android:textSize="15sp" />
@@ -24,7 +24,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:padding="10dp"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="12sp"
         />
 
 
