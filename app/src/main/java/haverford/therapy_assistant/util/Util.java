@@ -89,7 +89,7 @@ public class Util {
             case R.id.menu_home:
                 Util.startActivity(act, Homepage.class);
                 return true;
-                
+
             case R.id.menu_resources:
                 Util.startActivity(act, ResourceHome.class);
                 return true;
