@@ -28,10 +28,6 @@ public class MultipleChoiceAnswerFragment extends AnswerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // TODO: Remove this:
-        //mPrompts = (String[]) getArguments().getCharSequenceArray("prompts");
-
     }
 
     @Override
@@ -68,12 +64,8 @@ public class MultipleChoiceAnswerFragment extends AnswerFragment {
     }
 
     public static AnswerFragment newInstance(String[] prompts) {
-        // TODO: Remove the next two lines.
-        //Bundle args = new Bundle();
-        //args.putCharSequenceArray("prompts",prompts);
         MultipleChoiceAnswerFragment out = new MultipleChoiceAnswerFragment();
         out.setmPrompts(prompts);
-
         return out;
     }
 

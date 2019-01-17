@@ -27,26 +27,6 @@ import haverford.therapy_assistant.data.QuestionType;
  */
 public class Util {
 
-    public static Question util_q1 = new Question(
-            0
-            , QuestionType.TextAnswer
-            ,"What ATs are you having?"
-            , "AT identification");
-    public static Question util_q2 = new Question(
-            1
-            , QuestionType.ScaleOfTenAnswer
-            ,"How would you rate the amount of fear you're experiencing?"
-            , "Anxiety Rating.");
-
-    public static Question util_q3 = new Question(
-            2
-            , QuestionType.PercentageAnswer
-            ,"How in control do you feel?"
-            , "Control Rating.");
-
-    private static Question[] util_arr_qs = {util_q1, util_q2, util_q3};
-    public static Vector<Question> util_ques = new Vector(Arrays.asList(util_arr_qs));
-    public static Exercise util_exercise = new Exercise(0,"Fake CBT Exercise", util_ques);
 
     /* Toolbar Utilities
     *
@@ -105,10 +85,7 @@ public class Util {
 
 
 
-   /* General Utilities
-   *
-   *
-   */
+   /* General Utilities */
 
     // Simple activity starter.
     public static void startActivity(final AppCompatActivity act,

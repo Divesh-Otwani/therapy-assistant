@@ -3,7 +3,6 @@ package haverford.therapy_assistant.activity.exercise;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
@@ -20,7 +19,6 @@ import java.util.Vector;
 
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.util.Util;
-import haverford.therapy_assistant.cloud.CloudData;
 import haverford.therapy_assistant.data.Exercise;
 import haverford.therapy_assistant.data.Question;
 import haverford.therapy_assistant.data.QuestionType;
@@ -40,17 +38,12 @@ public class SelectExercise extends AppCompatActivity{
         // Setup database
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
-        //makeListenerForDatabaseChanges();
+
 
         // Setup list of exercises
-        ListView exercisesToChooseFrom = (ListView) findViewById(R.id.selectexercise_list);
-        //CloudData cloudDatabase = new CloudData();
-        //Vector<Exercise> possibleExercises = cloudDatabase.pullExercises();
 
-        //SelectExerciseAdapter exerciseAdapter = new SelectExerciseAdapter(this, possibleExercises);
-        //exercisesToChooseFrom.setAdapter(exerciseAdapter);
-        //makeListenerForDatabaseChanges();
 
+        //
         asyncSetupListviewAdapter();
     }
 
@@ -71,34 +64,24 @@ public class SelectExercise extends AppCompatActivity{
                     String text = "";
                     Integer qtype = -1;
                     for(DataSnapshot unique : uniqueChild.getChildren()){
-                        Log.d("unique.geyKey()", unique.getKey() + " " + unique.getValue().toString());
                         if(unique.getKey().equals("Name")){
-
                             name = (String) unique.getValue();
-                            Log.d("unique.geyKey() Name ", name);
                         }else if(unique.getKey().equals("Qtype")){
                             qtype = ((Long) unique.getValue()).intValue();
-                            Log.d("unique.geyKey() qtype ", qtype.toString());
                         }else if(unique.getKey().equals("Text")){
                             text = (String) unique.getValue();
-                            Log.d("unique.geyKey() text ", text);
                         }else if(unique.getKey().equals("UID")){
                             id = ((Long) unique.getValue()).intValue();
-                            Log.d("unique.geyKey() id ", id.toString());
                         }
-                        Log.d("unique.geyKey() all ", name + " " + qtype.toString() + " " + text + " " + id);
-
-
                     }
                     hm.put(id, new Question(id, QuestionType.values()[qtype], text, name));
-
 
                 }
 
                 for(DataSnapshot uniqueExer : exer.getChildren()){
                     String name = "";
                     Integer uid = -1;
-                    Vector<Question> vq = new Vector<Question>();
+                    Vector<Question> vecQuestions = new Vector<Question>();
                     for(DataSnapshot unique : uniqueExer.getChildren()){
                         if(unique.getKey().equals("Name")){
                             name = (String) unique.getValue();
@@ -107,18 +90,17 @@ public class SelectExercise extends AppCompatActivity{
                             uid = ((Long) unique.getValue()).intValue();
                         }else{
                             for(DataSnapshot u : unique.getChildren()){
-                                //Log.d("SelectExerciseTAGgetvalue", hm.get(((Long) u.getValue()).intValue()).getName());
-                                vq.add(hm.get(((Long) u.getValue()).intValue()));
+                                vecQuestions.add(hm.get(((Long) u.getValue()).intValue()));
                             }
                         }
 
                     }
-                    ex.add(new Exercise(uid, name, vq));
+                    ex.add(new Exercise(uid, name, vecQuestions));
 
                 }
-                ListView lv = (ListView) findViewById(R.id.selectexercise_list);
-                ListAdapter la = new SelectExerciseAdapter(SelectExercise.this, ex);
-                lv.setAdapter(la);
+                ListView exercisesToChooseFrom = (ListView) findViewById(R.id.selectexercise_list);
+                ListAdapter exerciseAdapter = new SelectExerciseAdapter(SelectExercise.this, ex);
+                exercisesToChooseFrom.setAdapter(exerciseAdapter);
 
             }
 

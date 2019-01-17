@@ -17,21 +17,18 @@ import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.data.Question;
 
 public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
-    ArrayList<Question> qu;
+    ArrayList<Question> questions;
 
     public QuestionAnswerAdapter(Context context, ArrayList<Question> q){
-        qu = q;
+        questions = q;
     }
 
     @Override
-    public int getCount() {
-
-        return qu.size();
-    }
+    public int getCount() { return questions.size(); }
 
     @Override
     public Object getItem(int position) {
-        return qu.get(position);
+        return questions.get(position);
     }
 
     @Override
@@ -41,24 +38,18 @@ public class QuestionAnswerAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        final Question question = qu.get(position);
+        final Question question = questions.get(position);
         final Context context = parent.getContext();
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.question_answer_list, parent, false);
         }
-        TextView tv = (TextView) view.findViewById(R.id.question);
-        tv.setText(question.getPrompt());
-        /*
-        ask how answer to question is shown and how to get the answer
-
-         */
-
-        // answer will always be a textview cause either a string, number or percentage
-        TextView tv2 = (TextView) view.findViewById(R.id.answer);
+        // Display prompt and answer in textviews.
+        TextView questionPrompt = (TextView) view.findViewById(R.id.question);
+        questionPrompt.setText(question.getPrompt());
+        TextView answer = (TextView) view.findViewById(R.id.answer);
         if(question.isAnswered()){
-            tv2.setText(question.getAnswerString());
+            answer.setText(question.getAnswerString());
         }
-
         return view;
     }
 }

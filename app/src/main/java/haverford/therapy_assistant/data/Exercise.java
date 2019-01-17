@@ -50,8 +50,4 @@ public class Exercise implements Serializable,Comparable {
             }
         } else { return -1; }
     }
-
-
-
-
 }

@@ -21,8 +21,6 @@ import haverford.therapy_assistant.data.Exercise;
 
 public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
 
-    private FirebaseDatabase database;
-    private DatabaseReference ref;
     Vector<Exercise> exercises;
 
     public SelectExerciseAdapter(Context context, Vector<Exercise> ex) {
@@ -60,7 +58,6 @@ public class SelectExerciseAdapter extends BaseAdapter implements ListAdapter {
                 bundle.putSerializable("exercise_arg", exercises.get(position));
                 Intent i = new Intent(context, DoExercise.class);
                 i.putExtras(bundle);
-
                 context.startActivity(i);
             }
         });

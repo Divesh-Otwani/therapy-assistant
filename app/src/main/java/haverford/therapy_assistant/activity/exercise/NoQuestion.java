@@ -16,10 +16,6 @@ public class NoQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_question);
-        //Util.makeToolbar(this, TITLE, R.id.selectexercise_toolbar);
-
-
 
     }
-
 }

@@ -18,19 +18,20 @@ import haverford.therapy_assistant.util.Util;
 import haverford.therapy_assistant.data.Question;
 
 public class QuestionAnswer extends AppCompatActivity {
-    public static final String TITLE = "QuestionAnswer";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_answer_activity);
-        Util.makeToolbar(this, TITLE, R.id.exercises_toolbar);
 
         // Get intent extras: list of questions,
         Intent creator = this.getIntent();
-        //Vector<Question> mQuestions = (Vector<Question>) creator.getSerializableExtra("recent_list_arg");
-        //Vector<Question> mQuestions = (Vector<Question>) creator.getExtras().getSerializable("recent_list_arg");
-        //Intent i = getIntent();
-        ArrayList<Question> mQuestions = (ArrayList<Question>) creator.getExtras().getSerializable("recent_list_arg");
+        Bundle bundle = creator.getExtras();
+        ArrayList<Question> mQuestions = (ArrayList<Question>) bundle.getSerializable("recent_list_arg");
+        String exerciseName = bundle.getString("exercise_name");
+
+        // Toolbar
+        Util.makeToolbar(this, exerciseName, R.id.exercises_toolbar);
 
         // Setup the list view.
         ListView lv = (ListView) findViewById(R.id.questionanswer_list);

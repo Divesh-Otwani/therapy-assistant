@@ -12,25 +12,27 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import haverford.therapy_assistant.R;
 import haverford.therapy_assistant.util.Util;
 
 public class Resource extends AppCompatActivity {
 
-    private static final String TITLE = "CBT Resources";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cbt_resources);
 
-        Util.makeToolbar(this, TITLE, R.id.cbt_toolbar);
+        // TODO: Open this activity with an argument for the resource category
+        // Use it below.
+        Util.makeToolbar(this, "Some Resource Category", R.id.cbt_toolbar);
 
 
-        String[] testResources = {"Articles","https://www.nytimes.com/2018/06/13/well/cognitive-behavior-therapy-suicide.html","Videos","youtube.com"};
-
+        // TODO: Using the database, populate the listview.
         ListView listView = this.findViewById(R.id.cbt_list);
-        listView.setAdapter(new ResourceAdapter(testResources,this));
+        listView.setAdapter(new ResourceListAdapter(new ArrayList(),this));
 
     }
 

@@ -24,6 +24,7 @@ public class Homepage extends AppCompatActivity {
      * Set up the main page: add the title, and make the buttons active.
      *
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +43,6 @@ public class Homepage extends AppCompatActivity {
         recentExercises.setAdapter(recentExerciseAdapter);
         Exercises.collectAllExercises(this, exercises, recentExerciseAdapter);
 
-
-
     }
 
     @Override
@@ -56,6 +55,5 @@ public class Homepage extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         return Util.optionItemSelected(this, item);
     }
-
 
 }
