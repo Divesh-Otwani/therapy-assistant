@@ -6,9 +6,15 @@ behavioral therapy.
 
 ## What's Different
 
-Most therapy applications try to replace or facilitate therapy. Self-help applications, while helpful for some individuals, do not seem to work for individuals who are seeking out therapy. Some applications connect individuals to liscenced clinicians via texts or message boards -- the goal of this application is different.
+Most therapy applications try to replace or facilitate therapy. Self-help applications, while helpful for some individuals, are not so helpful for individuals with problems that are moderate or more than moderate. Other applications connect individuals to licenced clinicians via texts or message boards -- the goal of this application is different.
 
-We hope to (eventually) create a robust application that **supplements** therapy by making the "homework" a patient usually does (exercises on paper, journal entries, breathing exercises, etc.) doable through a mobile application. This app should also provide official resources about treatment and psychopathology. All of this should be customizable by the therapist but backed by a default and standard database of exercises and resources.
+We hope to (eventually) create a robust application that **supplements**
+therapy by, first, making the "homework" a patient usually does (exercises on
+paper, journal entries, breathing exercises, etc.) doable through a mobile
+application. Second, this app should also provide official resources about
+treatment and psychopathology. All of this should be customizable by the
+therapist but backed by a default and standard database of exercises and
+resources.
 
 ## Current Features
 
